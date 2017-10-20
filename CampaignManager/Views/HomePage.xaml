@@ -4,27 +4,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:modules="using:CampaignManager.Views.HomePageModules"
     DataContext="{Binding HomePageViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
+        <Image Source="ms-appx:///Assets/HeaderImage.jpg"
+                Stretch="UniformToFill"
+                MaxHeight="400"
+                Grid.ColumnSpan="2" />
+        <Pivot Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2">
+            <PivotItem Header="Campaigns">
+                <RelativePanel>
+                    <Button x:Name="AddCampaignButton"
+                            Background="Transparent"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Style="{StaticResource TransparentButton}">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   Style="{StaticResource TransparentButton}" />
+                    </Button>
+                </RelativePanel>
 
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="HomePage_Title"
-            Style="{StaticResource PageTitleStyle}" />
+            </PivotItem>
+            <PivotItem Header="Characters">
+                <TextBlock Text="List of Player Characters"
+                           Style="{ThemeResource HeaderTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
 
-        <Grid 
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+            </PivotItem>
+            <PivotItem Header="Monsters">
+                    
+            </PivotItem>
+            <PivotItem Header="Items">
+                    
+            </PivotItem>
+            <PivotItem Header="Spells">
+                    
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

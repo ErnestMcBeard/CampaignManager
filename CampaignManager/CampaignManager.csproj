@@ -111,7 +111,9 @@
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Alignment.cs" />
+    <Compile Include="Models\Campaign.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Player.cs" />
@@ -168,6 +170,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\HeaderImage.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
