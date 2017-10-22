@@ -1,9 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CampaignManager.Models
 {
-    public class Ability : ObservableObject
+    public class Campaign : ObservableObject
     {
         private Guid id;
         public Guid Id
@@ -19,18 +23,11 @@ namespace CampaignManager.Models
             set { Set(() => Name, ref name, value); }
         }
 
-        private string effect;
-        public string Effect
+        private byte[] image;
+        public byte[] Image
         {
-            get { return effect; }
-            set { Set(() => Effect, ref effect, value); }
-        }
-
-        private string description;
-        public string Descritption
-        {
-            get { return description; }
-            set { Set(() => Descritption, ref description, value); }
+            get { return image; }
+            set { Set(() => Image, ref image, value); }
         }
     }
 }

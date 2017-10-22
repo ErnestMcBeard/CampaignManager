@@ -56,7 +56,7 @@ namespace CampaignManager
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.HomePageViewModel));
+            return new ActivationService(this, typeof(ViewModels.HomeViewModel));
         }
     }
 }

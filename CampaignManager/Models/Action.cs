@@ -1,11 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace CampaignManager.Models
 {
     public class Action : ObservableObject
     {
-        private int id;
-        public int Id
+        private Guid id;
+        public Guid Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }

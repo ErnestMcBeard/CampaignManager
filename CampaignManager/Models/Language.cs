@@ -9,8 +9,8 @@ namespace CampaignManager.Models
 {
     public class Language : ObservableObject
     {
-        private int id;
-        public int Id
+        private Guid id;
+        public Guid Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }

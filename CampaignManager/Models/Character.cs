@@ -10,8 +10,8 @@ namespace CampaignManager.Models
     public abstract class Character : ObservableObject
     {
         #region Properties and Fields
-        private int id;
-        public int Id
+        private Guid id;
+        public Guid Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }
