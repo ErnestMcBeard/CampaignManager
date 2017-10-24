@@ -1,17 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
+using SQLite.Net.Attributes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
 namespace CampaignManager.Models
 {
-    public abstract class Character : ObservableObject
+    public abstract class CharacterController : ObservableObject
     {
         #region Properties and Fields
-        private Guid id;
-        public Guid Id
+        private int id;
+        public int Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }
@@ -288,13 +286,54 @@ namespace CampaignManager.Models
         }
         #endregion
 
-        private ObservableCollection<Ability> abilities;
-        public ObservableCollection<Ability> Abilitites
+        private ObservableCollection<AbilityController> abilities;
+        public ObservableCollection<AbilityController> Abilitites
         {
             get { return abilities; }
             set { Set(() => abilities, ref abilities, value); }
         }
 
         #endregion
+    }
+
+    public abstract class Character
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Size Size { get; set; }
+        public Alignment Alignment { get; set; }
+        public short ArmorClass { get; set; }
+        public string ArmorType { get; set; }
+        public short HitPoints { get; set; }
+        public string HitDice { get; set; }
+        public short Speed { get; set; }
+        public short ProficiencyBonus { get; set; }
+        public short Strength { get; set; }
+        public short Dexterity { get; set; }
+        public short Constitution { get; set; }
+        public short Inteligence { get; set; }
+        public short Wisdom { get; set; }
+        public short Charisma { get; set; }
+        public bool Acrobatics { get; set; }
+        public bool AnimalHandling { get; set; }
+        public bool Arcana { get; set; }
+        public bool Athletics { get; set; }
+        public bool Deception { get; set; }
+        public bool History { get; set; }
+        public bool Insight { get; set; }
+        public bool Intimidation { get; set; }
+        public bool Investigation { get; set; }
+        public bool Medicine { get; set; }
+        public bool Nature { get; set; }
+        public bool Perception { get; set; }
+        public bool Performance { get; set; }
+        public bool Persuasion { get; set; }
+        public bool Religion { get; set; }
+        public bool SleightOfHand { get; set; }
+        public bool Stealth { get; set; }
+        public bool Survival { get; set; }
+
+        public List<AbilityController> Abilitites { get; set; }
     }
 }

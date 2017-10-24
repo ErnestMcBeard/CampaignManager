@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
+using SQLite.Net.Attributes;
 
 namespace CampaignManager.Models
 {
-    public class Ability : ObservableObject
+    public class AbilityController : ObservableObject
     {
-        private Guid id;
-        public Guid Id
+        private int id;
+        public int Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }
@@ -32,5 +32,14 @@ namespace CampaignManager.Models
             get { return description; }
             set { Set(() => Descritption, ref description, value); }
         }
+    }
+
+    public class Ability
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Effect { get; set; }
+        public string Description { get; set; }
     }
 }
