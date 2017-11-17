@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using SQLite.Net.Attributes;
+using System;
 
 namespace CampaignManager.Models
 {

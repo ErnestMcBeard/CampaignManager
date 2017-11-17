@@ -286,12 +286,6 @@ namespace CampaignManager.Models
         }
         #endregion
 
-        private ObservableCollection<AbilityController> abilities;
-        public ObservableCollection<AbilityController> Abilitites
-        {
-            get { return abilities; }
-            set { Set(() => abilities, ref abilities, value); }
-        }
 
         #endregion
     }
