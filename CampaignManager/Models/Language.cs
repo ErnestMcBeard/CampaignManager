@@ -1,13 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite.Net.Attributes;
 
 namespace CampaignManager.Models
 {
-    public class Language : ObservableObject
+    public class LanguageController : ObservableObject
     {
         private int id;
         public int Id
@@ -16,11 +12,18 @@ namespace CampaignManager.Models
             set { Set(() => Id, ref id, value); }
         }
 
-        private int name;
-        public int Name
+        private string name;
+        public string Name
         {
             get { return name; }
             set { Set(() => Name, ref name, value); }
         }
+    }
+
+    public class Language
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

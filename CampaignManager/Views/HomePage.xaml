@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="CampaignManager.Views.HomePagePage"
+    x:Class="CampaignManager.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,6 +27,7 @@
             <PivotItem Header="Campaigns">
                 <RelativePanel>
                     <Button x:Name="AddCampaignButton"
+<<<<<<< HEAD
                             Background="Transparent"
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignTopWithPanel="True"
@@ -53,6 +54,69 @@
             </PivotItem>
             <PivotItem Header="Spells">
                     
+=======
+                            Style="{StaticResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Click="AddCampaignButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                    Text="&#xE710;"
+                                    FontSize="24" />
+                    </Button>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Characters">
+                <RelativePanel>
+                    <Button x:Name="AddCharacterButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Click="AddCharacterButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Monsters">
+                <RelativePanel>
+                    <Button x:Name="AddMonsterButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Click="AddMonsterButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Items">
+                <RelativePanel>
+                    <Button x:Name="AddItemButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Click="AddItemButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Spells">
+                <RelativePanel>
+                    <Button x:Name="AddSpellButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            Click="AddSpellButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                </RelativePanel>
+>>>>>>> 176e4655528fac6ca261b94513c59174179c075b
             </PivotItem>
         </Pivot>
     </Grid>

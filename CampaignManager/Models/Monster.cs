@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CampaignManager.Models
+﻿namespace CampaignManager.Models
 {
+    public class MonsterController : CharacterController
+    {
+
+    }
+
     public class Monster : Character
     {
+
     }
 }
