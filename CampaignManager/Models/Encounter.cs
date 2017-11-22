@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace CampaignManager.Models
         {
             get { return name; }
             set { Set(() => Name, ref name, value); }
+        }
+
+        private short number;
+        public short Number
+        {
+            get { return number; }
+            set { Set(() => Number, ref number, value); }
         }
 
         private bool completed;
@@ -56,6 +64,16 @@ namespace CampaignManager.Models
             }
         }
 
+        public ObservableCollection<Character> GetCharacters()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var characterIds = db.Table<Encounter_Character>().Where(x => x.EncounterId == Id).Select(x => x.CharacterId);
+                var characterObjs = db.Table<Character>().Where(x => characterIds.Contains(x.Id));
+                return new ObservableCollection<Character>(characterObjs);
+            }
+        }
+
         public static explicit operator EncounterController(Encounter encounter)
         {
             return new EncounterController()
@@ -72,6 +90,7 @@ namespace CampaignManager.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
+        public short Number { get; set; }
         public bool Completed { get; set; }
 
         public static implicit operator Encounter(EncounterController encounter)
@@ -80,6 +99,7 @@ namespace CampaignManager.Models
             {
                 Id = encounter.Id,
                 Name = encounter.Name,
+                Number = encounter.Number,
                 Completed = encounter.Completed
             };
         }

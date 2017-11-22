@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CampaignManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace CampaignManager.Views
         public CampaignPage()
         {
             this.InitializeComponent();
+        }
+
+        override protected void OnNavigatedTo(NavigationEventArgs e)
+        {
+            (DataContext as CampaignViewModel).NavigatedTo((int)e.Parameter);
         }
     }
 }

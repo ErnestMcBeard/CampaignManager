@@ -34,7 +34,9 @@
                     </Button>
                     <GridView ItemsSource="{Binding Campaigns}"
                               IsItemClickEnabled="True"
-                              ItemClick="GridView_ItemClick" />
+                              ItemClick="GridView_ItemClick">
+                        
+                    </GridView>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Players">

@@ -18,11 +18,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox
+        <TextBlock
             x:Name="CampaignName"
-            Text="{Binding Campaign.Name, Mode=TwoWay}"
-            FontSize="{StaticResource LargeFontSize}"
-            VerticalAlignment="Bottom"/>
+            Text="{Binding Campaign.Name}"
+            FontSize="{StaticResource LargeFontSize}" />
 
         <ListView
             Grid.Row="1"
