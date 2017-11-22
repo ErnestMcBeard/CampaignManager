@@ -1,0 +1,40 @@
+﻿<ContentDialog
+    x:Class="CampaignManager.ContentDialogs.AddSpellDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="AddSpell"
+    PrimaryButtonText="Save"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="Save_Click"
+    SecondaryButtonClick="Cancel_Click">
+
+    <Grid>
+        <StackPanel Padding="0,-2">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin"
+                            Value="0,2" />
+                </Style>
+            </StackPanel.Resources>
+            <TextBox Header="Name"
+                     Text="{Binding NewSpell.Name, Mode=TwoWay}" />
+            <TextBox Header="Level"
+                     Text="{Binding NewSpell.Level, Mode=TwoWay}" />
+            <TextBox Header="Type"
+                     Text="{Binding NewSpell.Type, Mode=TwoWay}" />
+            <TextBox Header="CastingTime"
+                     Text="{Binding NewSpell.CastingTime, Mode=TwoWay}" />
+            <TextBox Header="Range"
+                     Text="{Binding NewSpell.Range, Mode=TwoWay}" />
+            <TextBox Header="Components"
+                     Text="{Binding NewSpell.Components, Mode=TwoWay}" />
+            <TextBox Header="Duration"
+                     Text="{Binding NewSpell.Duration, Mode=TwoWay}" />
+            <TextBox Header="Description"
+                     Text="{Binding NewSpell.Description, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+</ContentDialog>

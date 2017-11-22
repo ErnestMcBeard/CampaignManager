@@ -111,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="ContentDialogs\AddItemDialog.xaml.cs">
+      <DependentUpon>AddItemDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContentDialogs\AddSpellDialog.xaml.cs">
+      <DependentUpon>AddSpellDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\SQLiteHelper.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Action.cs" />
@@ -121,31 +127,16 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Spell.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Models\Size.cs" />
-    <Compile Include="ViewModels\AddCampaignViewModel.cs" />
     <Compile Include="ViewModels\AddCharacterViewModel.cs" />
-    <Compile Include="ViewModels\AddItemViewModel.cs" />
-    <Compile Include="ViewModels\AddMonsterViewModel.cs" />
-    <Compile Include="ViewModels\AddSpellViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AddCampaignPage.xaml.cs">
-      <DependentUpon>AddCampaignPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddCharacterPage.xaml.cs">
       <DependentUpon>AddCharacterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddItemPage.xaml.cs">
-      <DependentUpon>AddItemPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddMonsterPage.xaml.cs">
-      <DependentUpon>AddMonsterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddSpellPage.xaml.cs">
-      <DependentUpon>AddSpellPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -158,6 +149,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ContentDialogs\AddItemDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContentDialogs\AddSpellDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,23 +177,7 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\AddCampaignPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AddCharacterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddItemPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddMonsterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddSpellPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,8 @@
-﻿using CampaignManager.ViewModels;
+﻿using CampaignManager.ContentDialogs;
+using CampaignManager.Models;
+using CampaignManager.ViewModels;
 using GalaSoft.MvvmLight.Views;
+using System;
 using Windows.UI.Xaml.Controls;
 
 namespace CampaignManager.Views
@@ -31,14 +34,18 @@ namespace CampaignManager.Views
 
         }
 
-        private void AddItemButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void AddItemButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            var dialog = new AddItemDialog();
+            await dialog.ShowAsync();
+            ViewModel.GetItems();
         }
 
-        private void AddSpellButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void AddSpellButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            var dialog = new AddSpellDialog();
+            await dialog.ShowAsync();
+            ViewModel.GetSpells();
         }
     }
 }

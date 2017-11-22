@@ -1,9 +1,7 @@
-﻿using System;
-
+﻿using CampaignManager.Helpers;
+using CampaignManager.Models;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
-using CampaignManager.Models;
-using System.Windows.Input;
 
 namespace CampaignManager.ViewModels
 {
@@ -37,9 +35,46 @@ namespace CampaignManager.ViewModels
             set { Set(() => Items, ref items, value); }
         }
 
+        private ObservableCollection<Spell> spells = new ObservableCollection<Spell>();
+        public ObservableCollection<Spell> Spells
+        {
+            get { return spells; }
+            set { Set(() => Spells, ref spells, value); }
+        }
+
         public HomeViewModel()
         {
-            
+            Refresh();
+        }
+
+        public void Refresh()
+        {
+            GetItems();
+            GetSpells();
+        }
+
+        public void GetItems()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var itemQuery = db.Table<Item>();
+                foreach (var item in itemQuery)
+                {
+                    Items.Add(item);
+                }
+            }
+        }
+
+        public void GetSpells()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var spellQuery = db.Table<Spell>();
+                foreach (var spell in spellQuery)
+                {
+                    Spells.Add(spell);
+                }
+            }
         }
     }
 }

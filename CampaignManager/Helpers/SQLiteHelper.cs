@@ -26,6 +26,7 @@ namespace CampaignManager.Helpers
                 db.CreateTable<Language>();
                 db.CreateTable<Monster>();
                 db.CreateTable<Player>();
+                db.CreateTable<Spell>();
             }
         }
     }

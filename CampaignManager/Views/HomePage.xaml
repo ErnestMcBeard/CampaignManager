@@ -74,6 +74,16 @@
                                    Text="&#xE710;"
                                    FontSize="24" />
                     </Button>
+                    <Grid RelativePanel.Below="AddItemButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="300"/>
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Items}" />
+                    </Grid>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Spells">
@@ -87,6 +97,16 @@
                                    Text="&#xE710;"
                                    FontSize="24" />
                     </Button>
+                    <Grid RelativePanel.Below="AddSpellButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="300" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Spells}" />
+                    </Grid>
                 </RelativePanel>
             </PivotItem>
         </Pivot>

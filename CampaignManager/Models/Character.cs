@@ -327,7 +327,5 @@ namespace CampaignManager.Models
         public bool SleightOfHand { get; set; }
         public bool Stealth { get; set; }
         public bool Survival { get; set; }
-
-        public List<AbilityController> Abilitites { get; set; }
     }
 }
