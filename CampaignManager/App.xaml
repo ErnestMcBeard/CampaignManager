@@ -8,11 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" />
-            
             <Style x:Key="TransparentButton"
                    TargetType="Button">
                 <Setter Property="Background"
-                        Value="Transparent" />
+                        Value="{ThemeResource ButtonBackground}" />
                 <Setter Property="Foreground"
                         Value="{ThemeResource ButtonForeground}" />
                 <Setter Property="BorderBrush"
@@ -35,8 +34,6 @@
                         Value="True" />
                 <Setter Property="FocusVisualMargin"
                         Value="-3" />
-                <Setter Property="BorderThickness"
-                        Value="0" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -125,7 +122,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>

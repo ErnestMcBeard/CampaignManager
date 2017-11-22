@@ -1,6 +1,7 @@
-﻿using CampaignManager.Helpers;
+﻿using System;
+
 using CampaignManager.Services;
-using System;
+
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -29,8 +30,11 @@ namespace CampaignManager
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
+<<<<<<< HEAD
 
             SQLiteHelper.InitializeTables();
+=======
+>>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
         }
 
         /// <summary>
@@ -57,7 +61,7 @@ namespace CampaignManager
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.HomeViewModel));
+            return new ActivationService(this, typeof(ViewModels.HomePageViewModel));
         }
     }
 }

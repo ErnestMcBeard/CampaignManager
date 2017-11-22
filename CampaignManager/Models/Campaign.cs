@@ -1,13 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
-using SQLite.Net.Attributes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CampaignManager.Models
 {
-    public class CampaignController : ObservableObject
+    public class Campaign : ObservableObject
     {
-        private int id;
-        public int Id
+        private Guid id;
+        public Guid Id
         {
             get { return id; }
             set { Set(() => Id, ref id, value); }
@@ -26,13 +29,5 @@ namespace CampaignManager.Models
             get { return image; }
             set { Set(() => Image, ref image, value); }
         }
-    }
-
-    public class Campaign
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public byte[] Image { get; set; }
     }
 }
