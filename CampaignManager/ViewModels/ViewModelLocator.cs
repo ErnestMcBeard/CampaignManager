@@ -13,12 +13,10 @@ namespace CampaignManager.ViewModels
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             Register<HomeViewModel, HomePage>();
-            Register<AddCharacterViewModel, AddCharacterPage>();
             Register<CampaignViewModel, CampaignPage>();
         }
 
         public HomeViewModel HomePageViewModel => ServiceLocator.Current.GetInstance<HomeViewModel>();
-        public AddCharacterViewModel AddCharacterViewModel => ServiceLocator.Current.GetInstance<AddCharacterViewModel>();
         public CampaignViewModel CampaignPageViewModel => ServiceLocator.Current.GetInstance<CampaignViewModel>();
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

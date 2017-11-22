@@ -93,7 +93,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.2.3</Version>
+      <Version>6.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -132,17 +132,12 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Models\Size.cs" />
-    <Compile Include="ViewModels\AddCharacterViewModel.cs" />
     <Compile Include="ViewModels\CampaignViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AddCharacterPage.xaml.cs">
-      <DependentUpon>AddCharacterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CampaignPage.xaml.cs">
       <DependentUpon>CampaignPage.xaml</DependentUpon>
     </Compile>
->>>>>>> ada8b5a1ec8ee79b51a14e52e66358c8208f769f
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -181,10 +176,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Views\AddCharacterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CampaignPage.xaml">
       <SubType>Designer</SubType>
@@ -227,8 +218,8 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.21.0">
-      <Name>SQLite for Universal Windows Platform %28SQLite.UWP.2015, Version=3.21.0%29</Name>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.20.1">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
