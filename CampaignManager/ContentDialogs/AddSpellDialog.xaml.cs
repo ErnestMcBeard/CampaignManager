@@ -35,10 +35,7 @@ namespace CampaignManager.ContentDialogs
         {
             if (!string.IsNullOrEmpty(NewSpell.Name))
             {
-                using (var db = SQLiteHelper.CreateConnection())
-                {
-                    db.Insert((Spell)NewSpell);
-                }
+                NewSpell.Save();
             }
             Hide();
         }

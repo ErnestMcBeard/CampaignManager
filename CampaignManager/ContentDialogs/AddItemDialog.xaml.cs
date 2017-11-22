@@ -1,5 +1,4 @@
-﻿using CampaignManager.Helpers;
-using CampaignManager.Models;
+﻿using CampaignManager.Models;
 using System.ComponentModel;
 using Windows.UI.Xaml.Controls;
 
@@ -34,10 +33,7 @@ namespace CampaignManager.ContentDialogs
         {
             if (!string.IsNullOrEmpty(NewItem.Name))
             {
-                using (var db = SQLiteHelper.CreateConnection())
-                {
-                    db.Insert((Item)NewItem);
-                }
+                NewItem.Save();
             }
             Hide();
         }

@@ -29,10 +29,10 @@ namespace CampaignManager.Models
             set { Set(() => Size, ref size, value); }
         }
 
-        private Alignment alignment;
-        public Alignment Alignment
+        private int alignment;
+        public int Alignment
         {
-            get { return Alignment; }
+            get { return alignment; }
             set { Set(() => Alignment, ref alignment, value); }
         }
 
@@ -196,7 +196,7 @@ namespace CampaignManager.Models
         private bool history;
         public bool History
         {
-            get { return History; }
+            get { return history; }
             set { Set(() => History, ref history, value); }
         }
 
@@ -239,7 +239,7 @@ namespace CampaignManager.Models
         public bool Perception
         {
             get { return perception; }
-            set { Set(() => perception, ref perception, value); }
+            set { Set(() => Perception, ref perception, value); }
         }
 
         private bool performance;
@@ -301,7 +301,7 @@ namespace CampaignManager.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public Size Size { get; set; }
-        public Alignment Alignment { get; set; }
+        public int Alignment { get; set; }
         public short ArmorClass { get; set; }
         public string ArmorType { get; set; }
         public short HitPoints { get; set; }

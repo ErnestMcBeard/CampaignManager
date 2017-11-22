@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CampaignManager.Helpers;
+using GalaSoft.MvvmLight;
 using SQLite.Net.Attributes;
 
 namespace CampaignManager.Models
@@ -38,6 +39,30 @@ namespace CampaignManager.Models
         {
             get { return description; }
             set { Set(() => Description, ref description, value); }
+        }
+
+        public void Add()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Insert((Item)this);
+            }
+        }
+
+        public void Save()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Update((Item)this);
+            }
+        }
+
+        public void Delete()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Delete((Item)this);
+            }
         }
 
         public static explicit operator ItemController(Item item)

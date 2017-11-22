@@ -27,17 +27,156 @@
             <PivotItem Header="Campaigns">
                 
             </PivotItem>
-            <PivotItem Header="Characters">
+            <PivotItem Header="Players">
                 <RelativePanel>
-                    <Button x:Name="AddCharacterButton"
-                            Style="{ThemeResource TransparentButton}"
+                    <Button x:Name="DeletePlayerButton"
                             RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
-                            Click="AddCharacterButton_Click">
+                            Click="DeletePlayerButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SavePlayerButton"
+                            RelativePanel.LeftOf="DeletePlayerButton"
+                            Click="SavePlayerButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddPlayerButton"
+                            RelativePanel.LeftOf="SavePlayerButton"
+                            Click="AddPlayerButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE710;"
                                    FontSize="24" />
+
                     </Button>
+                    <Grid RelativePanel.Below="AddPlayerButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="300" />
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Players}"
+                                  SelectedValue="{Binding SelectedPlayer, Mode=TwoWay}"/>
+                        <RelativePanel Grid.Column="1"
+                                       Grid.Row="1">
+                            <StackPanel x:Name="EditCharacterInformationPanel"
+                                        MinWidth="200"
+                                        Margin="8">
+                                <TextBox Header="Name"
+                                            Text="{Binding SelectedPlayer.Name, Mode=TwoWay}" />
+                                <TextBox Header="Played By"
+                                            Text="{Binding SelectedPlayer.PlayedBy, Mode=TwoWay}" />
+                                <TextBox Header="Race"
+                                            Text="{Binding SelectedPlayer.Race, Mode=TwoWay}" />
+                                <TextBox Header="Sex"
+                                            Text="{Binding SelectedPlayer.Sex, Mode=TwoWay}" />
+                                <TextBox Header="Age"
+                                            Text="{Binding SelectedPlayer.Age, Mode=TwoWay}" />
+                                <TextBox Header="Height"
+                                            Text="{Binding SelectedPlayer.Height, Mode=TwoWay}" />
+                                <TextBox Header="Weight"
+                                            Text="{Binding SelectedPlayer.Weight, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="EditCharacterInformationPanel2"
+                                        MinWidth="200"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="EditCharacterInformationPanel"
+                                        Margin="8">
+                                <TextBox Header="PlayerClass"
+                                            Text="{Binding SelectedPlayer.PlayerClass, Mode=TwoWay}" />
+                                <TextBox Header="PlayerLevel"
+                                            Text="{Binding SelectedPlayer.PlayerLevel, Mode=TwoWay}" />
+                                <TextBox Header="Background"
+                                            Text="{Binding SelectedPlayer.Background, Mode=TwoWay}" />
+                                <TextBox Header="Experience Points"
+                                            Text="{Binding SelectedPlayer.ExperiencePoints, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="EditPlayerInformationPanel"
+                                        MinWidth="200"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="EditCharacterInformationPanel2"
+                                        Margin="8">
+                                <ComboBox Header="Alignment"
+                                            ItemsSource="{Binding Alignments}"
+                                            DisplayMemberPath="Value"
+                                            SelectedValuePath="Index"
+                                            SelectedValue="{Binding SelectedPlayer.Alignment, Mode=TwoWay}" />
+                                <TextBox Header="Armor Class"
+                                            Text="{Binding SelectedPlayer.ArmorClass, Mode=TwoWay}" />
+                                <TextBox Header="Armor Type"
+                                            Text="{Binding SelectedPlayer.ArmorType, Mode=TwoWay}" />
+                                <TextBox Header="Hit Points"
+                                            Text="{Binding SelectedPlayer.HitPoints, Mode=TwoWay}" />
+                                <TextBox Header="Hit Dice"
+                                            Text="{Binding SelectedPlayer.HitDice, Mode=TwoWay}" />
+                                <TextBox Header="Speed"
+                                            Text="{Binding SelectedPlayer.Speed, Mode=TwoWay}" />
+                                <TextBox Header="Proficiency Bonus"
+                                            Text="{Binding SelectedPlayer.ProficiencyBonus, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="EditStatsPanel"
+                                        MinWidth="200"
+                                        Margin="8"
+                                        RelativePanel.RightOf="EditPlayerInformationPanel">
+                                <TextBox Header="Strength"
+                                            Text="{Binding SelectedPlayer.Strength, Mode=TwoWay}" />
+                                <TextBox Header="Dexterity"
+                                            Text="{Binding SelectedPlayer.Dexterity, Mode=TwoWay}" />
+                                <TextBox Header="Constitution"
+                                            Text="{Binding SelectedPlayer.Constitution, Mode=TwoWay}" />
+                                <TextBox Header="Inteligence"
+                                            Text="{Binding SelectedPlayer.Inteligence, Mode=TwoWay}" />
+                                <TextBox Header="Wisdom"
+                                            Text="{Binding SelectedPlayer.Wisdom, Mode=TwoWay}" />
+                                <TextBox Header="Charisma"
+                                            Text="{Binding SelectedPlayer.Charisma, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="EditSkillPanel"
+                                        MinWidth="200"
+                                        Margin="8"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="EditStatsPanel">
+                                <CheckBox Content="Acrobatics"
+                                            IsChecked="{Binding SelectedPlayer.Acrobatics, Mode=TwoWay}" />
+                                <CheckBox Content="Animal Handling"
+                                            IsChecked="{Binding SelectedPlayer.AnimalHandling, Mode=TwoWay}" />
+                                <CheckBox Content="Arcana"
+                                            IsChecked="{Binding SelectedPlayer.Arcana, Mode=TwoWay}" />
+                                <CheckBox Content="Athletics"
+                                            IsChecked="{Binding SelectedPlayer.Athletics, Mode=TwoWay}" />
+                                <CheckBox Content="Deception"
+                                            IsChecked="{Binding SelectedPlayer.Deception, Mode=TwoWay}" />
+                                <CheckBox Content="History"
+                                            IsChecked="{Binding SelectedPlayer.History, Mode=TwoWay}" />
+                                <CheckBox Content="Insight"
+                                            IsChecked="{Binding SelectedPlayer.Insight, Mode=TwoWay}" />
+                                <CheckBox Content="Intimidation"
+                                            IsChecked="{Binding SelectedPlayer.Intimidation, Mode=TwoWay}" />
+                                <CheckBox Content="Investigation"
+                                            IsChecked="{Binding SelectedPlayer.Investigation, Mode=TwoWay}" />
+                                <CheckBox Content="Medicine"
+                                            IsChecked="{Binding SelectedPlayer.Medicine, Mode=TwoWay}" />
+                                <CheckBox Content="Nature"
+                                            IsChecked="{Binding SelectedPlayer.Nature, Mode=TwoWay}" />
+                                <CheckBox Content="Perception"
+                                            IsChecked="{Binding SelectedPlayer.Perception, Mode=TwoWay}" />
+                                <CheckBox Content="Performance"
+                                            IsChecked="{Binding SelectedPlayer.Performance, Mode=TwoWay}" />
+                                <CheckBox Content="Persuassion"
+                                            IsChecked="{Binding SelectedPlayer.Persuasion, Mode=TwoWay}" />
+                                <CheckBox Content="Religion"
+                                            IsChecked="{Binding SelectedPlayer.Religion, Mode=TwoWay}" />
+                                <CheckBox Content="Sleight Of Hand"
+                                            IsChecked="{Binding SelectedPlayer.SleightOfHand, Mode=TwoWay}" />
+                                <CheckBox Content="Survival"
+                                            IsChecked="{Binding SelectedPlayer.Survival, Mode=TwoWay}" />
+                            </StackPanel>
+                        </RelativePanel>
+                    </Grid>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Monsters">
@@ -55,10 +194,25 @@
             </PivotItem>
             <PivotItem Header="Items">
                 <RelativePanel>
-                    <Button x:Name="AddItemButton"
+                    <Button x:Name="DeleteItemButton"
                             Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
+                            Click="DeleteItemButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SaveItemButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="DeleteItemButton"
+                            Click="SaveItemButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddItemButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="SaveItemButton"
                             Click="AddItemButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE710;"
@@ -72,16 +226,45 @@
                             <ColumnDefinition MinWidth="300"/>
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
-                        <ListView ItemsSource="{Binding Items}" />
+                        <ListView ItemsSource="{Binding Items}"
+                                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}"/>
+                        <StackPanel HorizontalAlignment="Left"
+                                    Width="500"
+                                    Grid.Column="1">
+                            <TextBox Header="Name"
+                                     Text="{Binding SelectedItem.Name, Mode=TwoWay}" />
+                            <TextBox Header="Type"
+                                     Text="{Binding SelectedItem.Type, Mode=TwoWay}" />
+                            <TextBox Header="Rarity"
+                                     Text="{Binding SelectedItem.Rarity, Mode=TwoWay}" />
+                            <TextBox Header="Description"
+                                     Text="{Binding SelectedItem.Description, Mode=TwoWay}"
+                                     Height="300"/>
+                        </StackPanel>
                     </Grid>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Spells">
                 <RelativePanel>
-                    <Button x:Name="AddSpellButton"
+                    <Button x:Name="DeleteSpellButton"
                             Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
+                            Click="DeleteSpellButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SaveSpellButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="DeleteSpellButton"
+                            Click="SaveSpellButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddSpellButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="SaveSpellButton"
                             Click="AddSpellButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE710;"
@@ -93,9 +276,35 @@
                           RelativePanel.AlignBottomWithPanel="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition MinWidth="300" />
-                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition MinWidth="300" />
+                            <ColumnDefinition MinWidth="300" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        <ListView ItemsSource="{Binding Spells}" />
+                        <ListView x:Name="SpellsListView" ItemsSource="{Binding Spells}"
+                                  SelectedValue="{Binding SelectedSpell, Mode=TwoWay}" />
+                        <StackPanel HorizontalAlignment="Stretch"
+                                    Grid.Column="1"
+                                    Margin="8">
+                            <TextBox Header="Name"
+                                     Text="{Binding SelectedSpell.Name, Mode=TwoWay}" />
+                            <TextBox Header="Level"
+                                     Text="{Binding SelectedSpell.Level, Mode=TwoWay}" />
+                            <TextBox Header="Type"
+                                     Text="{Binding SelectedSpell.Type, Mode=TwoWay}" />
+                            <TextBox Header="Casting Time"
+                                     Text="{Binding SelectedSpell.CastingTime, Mode=TwoWay}" />
+                            <TextBox Header="Range"
+                                     Text="{Binding SelectedSpell.Range, Mode=TwoWay}" />
+                            <TextBox Header="Components"
+                                     Text="{Binding SelectedSpell.Components, Mode=TwoWay}" />
+                            <TextBox Header="Duration"
+                                     Text="{Binding SelectedSpell.Duration, Mode=TwoWay}" />
+                        </StackPanel>
+                        <TextBox Header="Description"
+                                 Text="{Binding SelectedSpell.Description, Mode=TwoWay}"
+                                 TextWrapping="Wrap"
+                                 Grid.Column="2"
+                                 Margin="8"/>
                     </Grid>
                 </RelativePanel>
             </PivotItem>
