@@ -19,9 +19,10 @@ namespace CampaignManager.Views
             InitializeComponent();
         }
 
-        private void AddCampaignButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void AddCampaignButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            await new AddCampaignDialog().ShowAsync();
+            ViewModel.GetCampaigns();
         }
 
         private void DeletePlayerButton_Click(object sender, RoutedEventArgs e)
@@ -49,9 +50,29 @@ namespace CampaignManager.Views
             ViewModel.SelectedPlayer = new PlayerController();
         }
 
+        private void DeleteMonsterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedMonster?.Delete();
+            ViewModel.GetMonsters();
+        }
+
+        private void SaveMonsterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.SelectedMonster?.Id == 0)
+            {
+                ViewModel.SelectedMonster.Add();
+                ViewModel.SelectedMonster = new MonsterController();
+            }
+            else
+            {
+                ViewModel.SelectedMonster.Save();
+            }
+            ViewModel.GetMonsters();
+        }
+
         private void AddMonsterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.SelectedMonster = new MonsterController();
         }
 
         private async void AddItemButton_Click(object sender, RoutedEventArgs e)
@@ -92,5 +113,9 @@ namespace CampaignManager.Views
             ViewModel.GetSpells();
         }
 
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.NavigateToEncounterScreen(e.ClickedItem as CampaignController);
+        }
     }
 }

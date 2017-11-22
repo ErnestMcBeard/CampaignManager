@@ -1,6 +1,9 @@
 ﻿using CampaignManager.Helpers;
 using CampaignManager.Models;
+using CampaignManager.Services;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
 using System.Collections.ObjectModel;
 
 namespace CampaignManager.ViewModels
@@ -109,12 +112,33 @@ namespace CampaignManager.ViewModels
 
         public void Refresh()
         {
+            GetCampaigns();
             GetPlayers();
+            GetMonsters();
             GetItems();
             GetSpells();
         }
 
+        public void NavigateToEncounterScreen(CampaignController campaign)
+        {
+            var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+            navigationService.Navigate(typeof(CampaignViewModel).ToString(), campaign.Id);
+        }
+
         #region GetData
+        public void GetCampaigns()
+        {
+            Campaigns.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var campaignQuery = db.Table<Campaign>();
+                foreach (var campaign in campaignQuery)
+                {
+                    Campaigns.Add((CampaignController)campaign);
+                }
+            }
+        }
+
         public void GetPlayers()
         {
             Players.Clear();
@@ -124,6 +148,19 @@ namespace CampaignManager.ViewModels
                 foreach (var player in playerQuery)
                 {
                     Players.Add((PlayerController)player);
+                }
+            }
+        }
+
+        public void GetMonsters()
+        {
+            Monsters.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var monsterQuery = db.Table<Monster>();
+                foreach (var monster in monsterQuery)
+                {
+                    Monsters.Add((MonsterController)monster);
                 }
             }
         }

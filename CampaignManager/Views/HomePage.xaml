@@ -25,7 +25,18 @@
                 Grid.RowSpan="2"
                 Grid.ColumnSpan="2">
             <PivotItem Header="Campaigns">
-                
+                <RelativePanel>
+                    <Button x:Name="AddCampaignButton"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Click="AddCampaignButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                    <GridView ItemsSource="{Binding Campaigns}"
+                              IsItemClickEnabled="True"
+                              ItemClick="GridView_ItemClick" />
+                </RelativePanel>
             </PivotItem>
             <PivotItem Header="Players">
                 <RelativePanel>
@@ -60,9 +71,8 @@
                             <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Players}"
-                                  SelectedValue="{Binding SelectedPlayer, Mode=TwoWay}"/>
-                        <RelativePanel Grid.Column="1"
-                                       Grid.Row="1">
+                                  SelectedValue="{Binding SelectedPlayer, Mode=TwoWay}" />
+                        <RelativePanel Grid.Column="1">
                             <StackPanel x:Name="EditCharacterInformationPanel"
                                         MinWidth="200"
                                         Margin="8">
@@ -181,15 +191,135 @@
             </PivotItem>
             <PivotItem Header="Monsters">
                 <RelativePanel>
-                    <Button x:Name="AddMonsterButton"
-                            Style="{ThemeResource TransparentButton}"
+                    <Button x:Name="DeleteMonsterButton"
                             RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
+                            Click="DeleteMonsterButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SaveMonsterButton"
+                            RelativePanel.LeftOf="DeleteMonsterButton"
+                            Click="SaveMonsterButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddMonsterButton"
+                            RelativePanel.LeftOf="SaveMonsterButton"
                             Click="AddMonsterButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE710;"
                                    FontSize="24" />
+
                     </Button>
+                    <Grid RelativePanel.Below="AddMonsterButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="300" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Monsters}"
+                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}" />
+                        <RelativePanel Grid.Column="1">
+                            <StackPanel x:Name="MonsterInformationPanel"
+                                        MinWidth="200"
+                                        Margin="8">
+                                <TextBox Header="Name"
+                                         Text="{Binding SelectedMonster.Name, Mode=TwoWay}" />
+                                <TextBox Header="Type"
+                                         Text="{Binding SelectedMonster.Type, Mode=TwoWay}" />
+                                <TextBox Header="Challenge Rating"
+                                         Text="{Binding SelectedMonster.ChallengeRating, Mode=TwoWay}" />
+                                <TextBox Header="Experience Points"
+                                         Text="{Binding SelectedMonster.ExperiencePoints, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="MonsterCharacterInformationPanel"
+                                        MinWidth="200"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="MonsterInformationPanel"
+                                        Margin="8">
+                                <ComboBox Header="Alignment"
+                                          HorizontalAlignment="Stretch"
+                                          ItemsSource="{Binding Alignments}"
+                                          DisplayMemberPath="Value"
+                                          SelectedValuePath="Index"
+                                          SelectedValue="{Binding SelectedMonster.Alignment, Mode=TwoWay}" />
+                                <TextBox Header="Armor Class"
+                                         Text="{Binding SelectedMonster.ArmorClass, Mode=TwoWay}" />
+                                <TextBox Header="Armor Type"
+                                         Text="{Binding SelectedMonster.ArmorType, Mode=TwoWay}" />
+                                <TextBox Header="Hit Points"
+                                         Text="{Binding SelectedMonster.HitPoints, Mode=TwoWay}" />
+                                <TextBox Header="Hit Dice"
+                                         Text="{Binding SelectedMonster.HitDice, Mode=TwoWay}" />
+                                <TextBox Header="Speed"
+                                         Text="{Binding SelectedMonster.Speed, Mode=TwoWay}" />
+                                <TextBox Header="Proficiency Bonus"
+                                         Text="{Binding SelectedMonster.ProficiencyBonus, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="MonsterStatsPanel"
+                                        MinWidth="200"
+                                        Margin="8"
+                                        RelativePanel.RightOf="MonsterCharacterInformationPanel">
+                                <TextBox Header="Strength"
+                                         Text="{Binding SelectedMonster.Strength, Mode=TwoWay}" />
+                                <TextBox Header="Dexterity"
+                                         Text="{Binding SelectedMonster.Dexterity, Mode=TwoWay}" />
+                                <TextBox Header="Constitution"
+                                         Text="{Binding SelectedMonster.Constitution, Mode=TwoWay}" />
+                                <TextBox Header="Inteligence"
+                                         Text="{Binding SelectedMonster.Inteligence, Mode=TwoWay}" />
+                                <TextBox Header="Wisdom"
+                                         Text="{Binding SelectedMonster.Wisdom, Mode=TwoWay}" />
+                                <TextBox Header="Charisma"
+                                         Text="{Binding SelectedMonster.Charisma, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel x:Name="MonsterSkillPanel"
+                                        MinWidth="200"
+                                        Margin="8"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="MonsterStatsPanel">
+                                <CheckBox Content="Acrobatics"
+                                          IsChecked="{Binding SelectedMonster.Acrobatics, Mode=TwoWay}" />
+                                <CheckBox Content="Animal Handling"
+                                          IsChecked="{Binding SelectedMonster.AnimalHandling, Mode=TwoWay}" />
+                                <CheckBox Content="Arcana"
+                                          IsChecked="{Binding SelectedMonster.Arcana, Mode=TwoWay}" />
+                                <CheckBox Content="Athletics"
+                                          IsChecked="{Binding SelectedMonster.Athletics, Mode=TwoWay}" />
+                                <CheckBox Content="Deception"
+                                          IsChecked="{Binding SelectedMonster.Deception, Mode=TwoWay}" />
+                                <CheckBox Content="History"
+                                          IsChecked="{Binding SelectedMonster.History, Mode=TwoWay}" />
+                                <CheckBox Content="Insight"
+                                          IsChecked="{Binding SelectedMonster.Insight, Mode=TwoWay}" />
+                                <CheckBox Content="Intimidation"
+                                          IsChecked="{Binding SelectedMonster.Intimidation, Mode=TwoWay}" />
+                                <CheckBox Content="Investigation"
+                                          IsChecked="{Binding SelectedMonster.Investigation, Mode=TwoWay}" />
+                                <CheckBox Content="Medicine"
+                                          IsChecked="{Binding SelectedMonster.Medicine, Mode=TwoWay}" />
+                                <CheckBox Content="Nature"
+                                          IsChecked="{Binding SelectedMonster.Nature, Mode=TwoWay}" />
+                                <CheckBox Content="Perception"
+                                          IsChecked="{Binding SelectedMonster.Perception, Mode=TwoWay}" />
+                                <CheckBox Content="Performance"
+                                          IsChecked="{Binding SelectedMonster.Performance, Mode=TwoWay}" />
+                                <CheckBox Content="Persuassion"
+                                          IsChecked="{Binding SelectedMonster.Persuasion, Mode=TwoWay}" />
+                                <CheckBox Content="Religion"
+                                          IsChecked="{Binding SelectedMonster.Religion, Mode=TwoWay}" />
+                                <CheckBox Content="Sleight Of Hand"
+                                          IsChecked="{Binding SelectedMonster.SleightOfHand, Mode=TwoWay}" />
+                                <CheckBox Content="Survival"
+                                          IsChecked="{Binding SelectedMonster.Survival, Mode=TwoWay}" />
+                            </StackPanel>
+
+                        </RelativePanel>
+                    </Grid>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Items">

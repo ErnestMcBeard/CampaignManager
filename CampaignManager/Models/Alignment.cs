@@ -8,7 +8,7 @@ namespace CampaignManager.Models
 {
     public class Alignment
     {
-        private static string[] alignments = { "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" };
+        private static string[] alignments = { "Not Aligned", "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" };
 
         public int Index { get; set; }
         public string Value { get; set; }
