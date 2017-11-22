@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight;
+using SQLite.Net.Attributes;
 
 namespace CampaignManager.Models
 {
-<<<<<<< HEAD
     public class ItemController : ObservableObject
     {
         private int id;
@@ -78,9 +74,5 @@ namespace CampaignManager.Models
                 Description = itemController.Description
             };
         }
-=======
-    public class Item
-    {
->>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
     }
 }

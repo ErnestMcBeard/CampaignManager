@@ -102,13 +102,15 @@
     <PackageReference Include="MvvmLight">
       <Version>5.3.0</Version>
     </PackageReference>
+    <PackageReference Include="SQLite.Net-PCL">
+      <Version>3.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
-<<<<<<< HEAD
     <Compile Include="ContentDialogs\AddItemDialog.xaml.cs">
       <DependentUpon>AddItemDialog.xaml</DependentUpon>
     </Compile>
@@ -116,8 +118,6 @@
       <DependentUpon>AddSpellDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SQLiteHelper.cs" />
-=======
->>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Alignment.cs" />
@@ -132,17 +132,12 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Models\Size.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\AddCharacterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AddCharacterPage.xaml.cs">
       <DependentUpon>AddCharacterPage.xaml</DependentUpon>
     </Compile>
-=======
-    <Compile Include="ViewModels\HomePageViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
->>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -182,13 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-<<<<<<< HEAD
     <Page Include="Views\AddCharacterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-=======
->>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
     <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,7 +195,11 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.20.1">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\HeaderImage.jpg" />
     <Content Include="Properties\Default.rd.xml" />

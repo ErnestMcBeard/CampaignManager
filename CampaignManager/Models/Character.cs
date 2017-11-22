@@ -1,13 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
+using SQLite.Net.Attributes;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
 namespace CampaignManager.Models
 {
-    public abstract class Character : ObservableObject
+    public abstract class CharacterController : ObservableObject
     {
         #region Properties and Fields
         private int id;
@@ -297,7 +294,6 @@ namespace CampaignManager.Models
 
         #endregion
     }
-<<<<<<< HEAD
 
     public abstract class Character
     {
@@ -337,6 +333,4 @@ namespace CampaignManager.Models
         public bool Stealth { get; set; }
         public bool Survival { get; set; }
     }
-=======
->>>>>>> fae0af7ee2a28527863263c051dddb5231620abd
 }

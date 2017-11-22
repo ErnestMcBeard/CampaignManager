@@ -25,45 +25,7 @@
                 Grid.RowSpan="2"
                 Grid.ColumnSpan="2">
             <PivotItem Header="Campaigns">
-                <RelativePanel>
-                    <Button x:Name="AddCampaignButton"
-<<<<<<< HEAD
-                            Background="Transparent"
-                            RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
-                            Style="{StaticResource TransparentButton}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE710;"
-                                   Style="{StaticResource TransparentButton}" />
-                    </Button>
-                </RelativePanel>
-
-            </PivotItem>
-            <PivotItem Header="Characters">
-                <TextBlock Text="List of Player Characters"
-                           Style="{ThemeResource HeaderTextBlockStyle}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-
-            </PivotItem>
-            <PivotItem Header="Monsters">
-                    
-            </PivotItem>
-            <PivotItem Header="Items">
-                    
-            </PivotItem>
-            <PivotItem Header="Spells">
-                    
-=======
-                            Style="{StaticResource TransparentButton}"
-                            RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignTopWithPanel="True"
-                            Click="AddCampaignButton_Click">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                    Text="&#xE710;"
-                                    FontSize="24" />
-                    </Button>
-                </RelativePanel>
+                
             </PivotItem>
             <PivotItem Header="Characters">
                 <RelativePanel>
@@ -136,7 +98,6 @@
                         <ListView ItemsSource="{Binding Spells}" />
                     </Grid>
                 </RelativePanel>
->>>>>>> 176e4655528fac6ca261b94513c59174179c075b
             </PivotItem>
         </Pivot>
     </Grid>
