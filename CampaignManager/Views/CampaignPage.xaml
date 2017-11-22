@@ -5,9 +5,33 @@
     xmlns:local="using:CampaignManager.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding CampaignPageViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox Text="{Binding Campaign.Name}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBox
+            x:Name="CampaignName"
+            Text="{Binding Campaign.Name, Mode=TwoWay}"
+            FontSize="{StaticResource LargeFontSize}"
+            VerticalAlignment="Bottom"/>
+
+        <ListView
+            Grid.Row="1"
+            x:Name="EncounterList">
+        </ListView>
+
+        <RelativePanel
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="EncounterDetails"/>
     </Grid>
 </Page>

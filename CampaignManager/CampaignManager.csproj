@@ -126,6 +126,7 @@
     <Compile Include="Models\Alignment.cs" />
     <Compile Include="Models\Campaign.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Encounter.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Monster.cs" />
@@ -225,7 +226,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.20.1">
+    <SDKReference Include="SQLite.UWP.2015, Version=3.21.0">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
