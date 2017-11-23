@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:CampaignManager.Models"
     DataContext="{Binding HomePageViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid>
@@ -35,7 +36,31 @@
                     <GridView ItemsSource="{Binding Campaigns}"
                               IsItemClickEnabled="True"
                               ItemClick="GridView_ItemClick">
-                        
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <Setter Property="Width" Value="200"/>
+                                <Setter Property="Height" Value="200"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:CampaignController">
+                                <RelativePanel BorderThickness="1" 
+                                               BorderBrush="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+                                    <Rectangle RelativePanel.AlignBottomWith="CampaignName"
+                                               RelativePanel.AlignTopWith="CampaignName"
+                                               RelativePanel.AlignLeftWithPanel="True"
+                                               RelativePanel.AlignRightWithPanel="True"
+                                               Fill="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"/>
+                                    <TextBlock x:Name="CampaignName"
+                                               RelativePanel.AlignBottomWithPanel="True"
+                                               Text="{x:Bind Name}"
+                                               Padding="10"/>
+                                </RelativePanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
                     </GridView>
                 </RelativePanel>
             </PivotItem>

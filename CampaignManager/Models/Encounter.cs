@@ -19,6 +19,13 @@ namespace CampaignManager.Models
             set { Set(() => Id, ref id, value); }
         }
 
+        private int campaignId;
+        public int CampaignId
+        {
+            get { return campaignId; }
+            set { Set(() => CampaignId, ref campaignId, value); }
+        }
+
         private string name;
         public string Name
         {
@@ -89,6 +96,7 @@ namespace CampaignManager.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public int CampaignId { get; set; }
         public string Name { get; set; }
         public short Number { get; set; }
         public bool Completed { get; set; }
@@ -98,6 +106,7 @@ namespace CampaignManager.Models
             return new Encounter()
             {
                 Id = encounter.Id,
+                CampaignId = encounter.CampaignId,
                 Name = encounter.Name,
                 Number = encounter.Number,
                 Completed = encounter.Completed

@@ -33,7 +33,8 @@ namespace CampaignManager.ViewModels
 
         public void NavigatedTo(int campaignId)
         {
-            
+            GetCampaign(campaignId);
+            GetEncounters(campaignId);
         }
 
         private CampaignController GetCampaign(int id)
@@ -47,6 +48,21 @@ namespace CampaignManager.ViewModels
                         return (CampaignController)campaign;
                 }
                 return null;
+            }
+        }
+
+        private void GetEncounters(int campaignId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var query = db.Table<Encounter>();
+                foreach (var encounter in query)
+                {
+                    if (encounter.CampaignId == campaignId)
+                    {
+                        Encounters.Add((EncounterController)encounter);
+                    }
+                }
             }
         }
     }

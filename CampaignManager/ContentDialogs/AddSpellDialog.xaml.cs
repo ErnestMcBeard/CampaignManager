@@ -35,7 +35,7 @@ namespace CampaignManager.ContentDialogs
         {
             if (!string.IsNullOrEmpty(NewSpell.Name))
             {
-                NewSpell.Save();
+                NewSpell.Add();
             }
             Hide();
         }

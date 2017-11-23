@@ -33,7 +33,7 @@ namespace CampaignManager.ContentDialogs
         {
             if (!string.IsNullOrEmpty(NewItem.Name))
             {
-                NewItem.Save();
+                NewItem.Add();
             }
             Hide();
         }
