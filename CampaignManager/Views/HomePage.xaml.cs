@@ -84,13 +84,13 @@ namespace CampaignManager.Views
 
         private void SaveItemButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedItem.Save();
+            ViewModel.SelectedItem?.Save();
             ViewModel.GetItems();
         }
 
         private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedItem.Delete();
+            ViewModel.SelectedItem?.Delete();
             ViewModel.GetItems();
         }
 
@@ -103,13 +103,13 @@ namespace CampaignManager.Views
 
         private void SaveSpellButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedSpell.Save();
+            ViewModel.SelectedSpell?.Save();
             ViewModel.GetSpells();
         }
 
         private void DeleteSpellButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedSpell.Delete();
+            ViewModel.SelectedSpell?.Delete();
             ViewModel.GetSpells();
         }
 
