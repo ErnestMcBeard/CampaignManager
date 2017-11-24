@@ -35,7 +35,7 @@ namespace CampaignManager.ViewModels
 
         public void NavigatedTo(int campaignId)
         {
-            GetCampaign(campaignId);
+            Campaign = GetCampaign(campaignId);
             GetEncounters(campaignId);
             GetPlayers(campaignId);
         }
@@ -71,20 +71,20 @@ namespace CampaignManager.ViewModels
 
         private void GetPlayers(int campaignId)
         {
-            using (var db = SQLiteHelper.CreateConnection())
-            {
-                var campPlayerQuery = db.Table<Campaign_Player>();
-                var playerQuery = db.Table<Player>().ToList();
+            //using (var db = SQLiteHelper.CreateConnection())
+            //{
+            //    var campPlayerQuery = db.Table<Campaign_Player>();
+            //    var playerQuery = db.Table<Player>().ToList();
 
-                foreach (var campPlayer in campPlayerQuery)
-                {
-                    if (campPlayer.CampaignId == campaignId)
-                    {
-                        PlayerController playerMatch = (PlayerController)playerQuery.Where(x => x.Id == campPlayer.PlayerId).FirstOrDefault();
-                        Players.Add(playerMatch);
-                    }
-                }
-            }
+            //    foreach (var campPlayer in campPlayerQuery)
+            //    {
+            //        if (campPlayer.CampaignId == campaignId)
+            //        {
+            //            PlayerController playerMatch = (PlayerController)playerQuery.Where(x => x.Id == campPlayer.PlayerId).FirstOrDefault();
+            //            Players.Add(playerMatch);
+            //        }
+            //    }
+            //}
         }
     }
 }
