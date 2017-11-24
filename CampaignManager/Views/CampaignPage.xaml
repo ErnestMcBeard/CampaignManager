@@ -40,7 +40,9 @@
         </RelativePanel>-->
         <ListView Grid.Row="2"
                   x:Name="EncounterList"
-                  ItemsSource="{Binding Encounters}">
+                  ItemsSource="{Binding Encounters}"
+                  SelectedValue="{Binding SelectedEncounter, Mode=TwoWay}"
+                 SelectionChanged="EncounterList_SelectionChanged">
         </ListView>
 
         <RelativePanel Grid.Row="3">
@@ -61,6 +63,9 @@
 
         <RelativePanel Grid.Row="1"
                        Grid.Column="1">
+            <TextBlock x:Name="SectionLabel"
+                       Text="{Binding EncounterDetailsHeader}"/>
+
             <Button x:Name="DeleteEncounterButton"
                             Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
@@ -91,7 +96,9 @@
         <RelativePanel Grid.Row="2"
                        Grid.Column="1"
                        x:Name="EncounterDetails"
-                       Margin="10,0">
+                       Margin="10,0" 
+                       Height="486" 
+                       VerticalAlignment="Bottom">
             <RelativePanel.Resources>
                 <Style TargetType="TextBlock" x:Key="PaddedLabel">
                     <Setter Property="Width" Value="150"/>
@@ -108,7 +115,7 @@
                        Text="Name"
                        Style="{ThemeResource PaddedLabel}"/>
             <TextBox x:Name="EncounterName"
-                     Text="New Encounter"
+                     Text="{Binding SelectedEncounter.Name, Mode=TwoWay}"
                      RelativePanel.RightOf="NameLabel"/>
             
             <TextBlock x:Name="NumberLabel"
@@ -116,7 +123,7 @@
                        RelativePanel.Below="NameLabel"
                        Style="{ThemeResource PaddedLabel}"/>
             <TextBox x:Name="EncounterNumber"
-                     Text="0"
+                     Text="{Binding SelectedEncounter.Number, Mode=TwoWay}"
                      RelativePanel.Below="EncounterName"
                      RelativePanel.RightOf="NumberLabel"/>
             
@@ -127,6 +134,7 @@
             <CheckBox x:Name="EncounterCompleted"
                       RelativePanel.Below="EncounterNumber"
                       RelativePanel.RightOf="CompleteLabel"
+                      IsChecked="{Binding SelectedEncounter.Completed, Mode=TwoWay}"
                       Margin="0,0,0,20"/>
 
             <TextBlock x:Name="MonsterLabel" 
@@ -147,14 +155,17 @@
                     Style="{ThemeResource TransparentButton}"
                     RelativePanel.Below="EncounterCompleted"
                     RelativePanel.LeftOf="DeleteMonsterButton"
-                    Click="AddEncounterrEncounter_Click">
+                    Click="AddEncounterButton_Click">
                 <TextBlock FontFamily="Segoe MDL2 Assets"
                            Text="&#xE710;"
                            FontSize="24" />
-
             </Button>
 
-            <ListView x:Name="MonsterList">
+            <ListView x:Name="MonsterList"
+                      RelativePanel.Below="MonsterLabel"
+                      RelativePanel.AlignBottomWithPanel="True"
+                      RelativePanel.AlignLeftWithPanel="True"
+                      RelativePanel.AlignRightWithPanel="True">
                 
             </ListView>
 

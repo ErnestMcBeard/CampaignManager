@@ -1,6 +1,8 @@
 ﻿using CampaignManager.Helpers;
 using GalaSoft.MvvmLight;
 using SQLite.Net.Attributes;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CampaignManager.Models
 {
@@ -55,6 +57,23 @@ namespace CampaignManager.Models
             using (var db = SQLiteHelper.CreateConnection())
             {
                 db.Delete((Campaign)this);
+            }
+        }
+
+        public ObservableCollection<EncounterController> GetEncounters()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var table = db.Table<Encounter>();
+                ObservableCollection<EncounterController> encounters = new ObservableCollection<EncounterController>();
+
+                foreach (var encounter in table)
+                {
+                    if (encounter.CampaignId == Id)
+                        encounters.Add((EncounterController)encounter);
+                }
+
+                return encounters;
             }
         }
 

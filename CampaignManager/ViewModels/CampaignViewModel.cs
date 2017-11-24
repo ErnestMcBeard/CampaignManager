@@ -12,6 +12,9 @@ namespace CampaignManager.ViewModels
 {
     public class CampaignViewModel : ViewModelBase
     {
+        private enum EncounterState { Adding, Editing, None };
+        private EncounterState encounterState = EncounterState.None;
+
         private CampaignController _campaign;
         public CampaignController Campaign
         {
@@ -33,11 +36,26 @@ namespace CampaignManager.ViewModels
             set { Set(() => Players, ref players, value); }
         }
 
+        private string encounterDetailsHeader;
+        public string EncounterDetailsHeader
+        {
+            get { return encounterDetailsHeader; }
+            set { Set(() => EncounterDetailsHeader, ref encounterDetailsHeader, value); }
+        }
+        
+        private EncounterController selectedEncounter;
+        public EncounterController SelectedEncounter
+        {
+            get { return selectedEncounter; }
+            set { Set(() => SelectedEncounter, ref selectedEncounter, value); }
+        }
+
         public void NavigatedTo(int campaignId)
         {
             Campaign = GetCampaign(campaignId);
-            GetEncounters(campaignId);
-            GetPlayers(campaignId);
+            GetEncounters();
+            ClearEncounterDetails();
+            GetPlayers();            
         }
 
         private CampaignController GetCampaign(int id)
@@ -54,22 +72,12 @@ namespace CampaignManager.ViewModels
             }
         }
 
-        private void GetEncounters(int campaignId)
+        private void GetEncounters()
         {
-            using (var db = SQLiteHelper.CreateConnection())
-            {
-                var query = db.Table<Encounter>();
-                foreach (var encounter in query)
-                {
-                    if (encounter.CampaignId == campaignId)
-                    {
-                        Encounters.Add((EncounterController)encounter);
-                    }
-                }
-            }
+            Encounters = Campaign.GetEncounters();
         }
 
-        private void GetPlayers(int campaignId)
+        private void GetPlayers()
         {
             //using (var db = SQLiteHelper.CreateConnection())
             //{
@@ -85,6 +93,71 @@ namespace CampaignManager.ViewModels
             //        }
             //    }
             //}
+        }
+
+        private EncounterController GetLastEncounter()
+        {
+            return Encounters.OrderByDescending(x => x.Number).FirstOrDefault();
+        }
+        
+        public void AddEncounterClick()
+        {
+            EncounterDetailsHeader = "New Encounter";
+            encounterState = EncounterState.Adding;
+
+            short nextNum = 1;
+            EncounterController lastEncounter = GetLastEncounter();
+
+            if (lastEncounter != null)
+                nextNum = (short)(lastEncounter.Number + 1);
+
+            SelectedEncounter = new EncounterController()
+            {
+                //Name = "New Encounter",
+                Number = nextNum
+            };
+        }
+
+        public void EncounterSelected()
+        {
+            EncounterDetailsHeader = "Selected Encounter";
+            encounterState = EncounterState.Editing;
+        }
+
+        public void SaveEncounterClick()
+        {
+            if (encounterState == EncounterState.Adding)
+            {
+                SelectedEncounter.Add();
+            }
+            else if (encounterState == EncounterState.Editing)
+            {
+                SelectedEncounter.Save();
+            }
+            else
+            {
+                return;
+            }
+
+            ClearEncounterDetails();
+        }
+
+        public void DeleteEncounterClick()
+        {
+            if (encounterState == EncounterState.Editing)
+            {
+                SelectedEncounter.Delete();
+            }
+
+            ClearEncounterDetails();
+        }
+
+        public void ClearEncounterDetails()
+        {
+            encounterState = EncounterState.None;
+            EncounterDetailsHeader = String.Empty;
+            GetEncounters();
+            SelectedEncounter = null;
         }
     }
 }
