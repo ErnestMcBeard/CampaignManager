@@ -74,41 +74,41 @@ namespace CampaignManager.ViewModels
         }
 
         #region PlayerItems
-        private ObservableCollection<ItemController> playerItems;
+        private ObservableCollection<ItemController> playerItems = new ObservableCollection<ItemController>();
         public ObservableCollection<ItemController> PlayerItems
         {
             get { return playerItems; }
             set { Set(() => PlayerItems, ref playerItems, value); }
         }
 
-        private ObservableCollection<SpellController> playerSpells;
+        private ObservableCollection<SpellController> playerSpells = new ObservableCollection<SpellController>();
         public ObservableCollection<SpellController> PlayerSpells
         {
             get { return playerSpells; }
             set { Set(() => PlayerSpells, ref playerSpells, value); }
         }
 
-        private ObservableCollection<ActionController> playerActions;
+        private ObservableCollection<ActionController> playerActions = new ObservableCollection<ActionController>();
         public ObservableCollection<ActionController> PlayerActions
         {
             get { return playerActions; }
             set { Set(() => PlayerActions, ref playerActions, value); }
         }
 
-        private ObservableCollection<AbilityController> playerAbilities;
+        private ObservableCollection<AbilityController> playerAbilities = new ObservableCollection<AbilityController>();
         public ObservableCollection<AbilityController> PlayerAbilities
         {
             get { return playerAbilities; }
             set { Set(() => PlayerAbilities, ref playerAbilities, value); }
         }
 
-        private void GetPlayerItems()
+        public void GetPlayerItems()
         {
             var playerId = SelectedPlayer.Id;
-            PlayerItems.Clear();
-            PlayerSpells.Clear();
-            PlayerActions.Clear();
-            PlayerAbilities.Clear();
+            PlayerItems?.Clear();
+            PlayerSpells?.Clear();
+            PlayerActions?.Clear();
+            PlayerAbilities?.Clear();
             using (var db = SQLiteHelper.CreateConnection())
             {
                 var itemQuery = db.Table<Player_Item>().Where(x => x.PlayerId == playerId);
@@ -133,7 +133,7 @@ namespace CampaignManager.ViewModels
                 foreach (var playerAbility in abilityQuery)
                 {
                     var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
-                    Abilities.Add((AbilityController)ability);
+                    PlayerAbilities.Add((AbilityController)ability);
                 }
             }
         }
@@ -352,6 +352,44 @@ namespace CampaignManager.ViewModels
                 {
                     Actions.Add((ActionController)action);
                 }
+            }
+        }
+        #endregion
+
+        #region RemoveRelationships
+        public void RemoveAbilityFromPlayer(int abilityId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var playerAbility = db.Table<Player_Ability>().Where(x => x.PlayerId == SelectedPlayer.Id && x.AbilityId == abilityId);
+                db.Delete(playerAbility);
+            }
+        }
+
+        public void RemoveActionFromPlayer(int actionId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var playerAction = db.Table<Player_Action>().Where(x => x.PlayerId == SelectedPlayer.Id && x.ActionId == actionId);
+                db.Delete(playerAction);
+            }
+        }
+
+        public void RemoveSpellFromPlayer(int spellId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var playerSpell = db.Table<Player_Spell>().Where(x => x.PlayerId == SelectedPlayer.Id && x.SpellId == spellId);
+                db.Delete(playerSpell);
+            }
+        }
+
+        public void RemoveItemFromPlayer(int itemId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var playerItem = db.Table<Player_Item>().Where(x => x.PlayerId == SelectedPlayer.Id && x.ItemId == itemId);
+                db.Delete(playerItem);
             }
         }
         #endregion
