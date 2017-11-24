@@ -120,6 +120,7 @@
     <Compile Include="ContentDialogs\AddSpellDialog.xaml.cs">
       <DependentUpon>AddSpellDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AlignmentConveter.cs" />
     <Compile Include="Helpers\SQLiteHelper.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Action.cs" />
@@ -131,7 +132,12 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Monster.cs" />
+    <Compile Include="Models\Monster_Ability.cs" />
+    <Compile Include="Models\Monster_Action.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Player_Ability.cs" />
+    <Compile Include="Models\Player_Action.cs" />
+    <Compile Include="Models\Player_Spell.cs" />
     <Compile Include="Models\Spell.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />

@@ -3,15 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vms="using:CampaignManager.ViewModels"
+    xmlns:converters="using:CampaignManager.Converters"
     >
 
     <Application.Resources>
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" />
+            <converters:AlignmentConveter x:Key="AlignmentConverter" />
             <Style x:Key="TransparentButton"
                    TargetType="Button">
                 <Setter Property="Background"
-                        Value="{ThemeResource ButtonBackground}" />
+                        Value="Transparent" />
                 <Setter Property="Foreground"
                         Value="{ThemeResource ButtonForeground}" />
                 <Setter Property="BorderBrush"

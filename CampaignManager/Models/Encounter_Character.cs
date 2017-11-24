@@ -26,6 +26,13 @@ namespace CampaignManager.Models
             set { Set(() => EncounterId, ref encounterId, value); }
         }
 
+        private string characterType;
+        public string CharacterType
+        {
+            get { return characterType; }
+            set { Set(() => CharacterType, ref characterType, value); }
+        }
+
         private int characterId;
         public int CharacterId
         {
@@ -63,6 +70,7 @@ namespace CampaignManager.Models
             {
                 Id = encounterCharacter.Id,
                 EncounterId = encounterCharacter.EncounterId,
+                CharacterType = encounterCharacter.CharacterType,
                 CharacterId = encounterCharacter.CharacterId
             };
         }
@@ -73,6 +81,7 @@ namespace CampaignManager.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int EncounterId { get; set; }
+        public string CharacterType { get; set; }
         public int CharacterId { get; set; }
 
         public static implicit operator Encounter_Character(Encounter_CharacterController encounterCharacter)
@@ -81,6 +90,7 @@ namespace CampaignManager.Models
             {
                 Id = encounterCharacter.Id,
                 EncounterId = encounterCharacter.EncounterId,
+                CharacterType = encounterCharacter.CharacterType,
                 CharacterId = encounterCharacter.CharacterId
             };
         }

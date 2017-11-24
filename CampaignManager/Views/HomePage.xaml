@@ -27,6 +27,7 @@
             <PivotItem Header="Campaigns">
                 <RelativePanel>
                     <Button x:Name="AddCampaignButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
                             Click="AddCampaignButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -67,6 +68,7 @@
             <PivotItem Header="Players">
                 <RelativePanel>
                     <Button x:Name="DeletePlayerButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
                             Click="DeletePlayerButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -74,6 +76,7 @@
                                    FontSize="24" />
                     </Button>
                     <Button x:Name="SavePlayerButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.LeftOf="DeletePlayerButton"
                             Click="SavePlayerButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -81,6 +84,7 @@
                                    FontSize="24" />
                     </Button>
                     <Button x:Name="AddPlayerButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.LeftOf="SavePlayerButton"
                             Click="AddPlayerButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -97,7 +101,31 @@
                             <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Players}"
-                                  SelectedValue="{Binding SelectedPlayer, Mode=TwoWay}" />
+                                  SelectedValue="{Binding SelectedPlayer, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <TextBlock x:Name="Name"
+                                                   Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                        <TextBlock x:Name="PlayerLevel"
+                                                   Margin="4,0"
+                                                   RelativePanel.AlignVerticalCenterWithPanel="True"
+                                                   RelativePanel.AlignRightWithPanel="True">
+                                            <Run Text="Lvl" />
+                                            <Run Text="{Binding PlayerLevel}" />
+                                            <Run Text="{Binding PlayerClass}" />
+                                        </TextBlock>
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                         <RelativePanel Grid.Column="1">
                             <StackPanel x:Name="EditCharacterInformationPanel"
                                         MinWidth="200"
@@ -155,7 +183,6 @@
                                             Text="{Binding SelectedPlayer.ProficiencyBonus, Mode=TwoWay}" />
                             </StackPanel>
                             <StackPanel x:Name="EditStatsPanel"
-                                        MinWidth="200"
                                         Margin="8"
                                         RelativePanel.RightOf="EditPlayerInformationPanel">
                                 <TextBox Header="Strength"
@@ -211,6 +238,17 @@
                                 <CheckBox Content="Survival"
                                             IsChecked="{Binding SelectedPlayer.Survival, Mode=TwoWay}" />
                             </StackPanel>
+                            <Pivot x:Name="PlayerStuffPivot">
+                                <PivotItem Header="Abilities">
+                                    
+                                </PivotItem>
+                                <PivotItem Header="Actions">
+                                    
+                                </PivotItem>
+                                <PivotItem Header="Spells">
+                                    
+                                </PivotItem>
+                            </Pivot>
                         </RelativePanel>
                     </Grid>
                 </RelativePanel>
@@ -218,6 +256,7 @@
             <PivotItem Header="Monsters">
                 <RelativePanel>
                     <Button x:Name="DeleteMonsterButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.AlignRightWithPanel="True"
                             Click="DeleteMonsterButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -225,6 +264,7 @@
                                    FontSize="24" />
                     </Button>
                     <Button x:Name="SaveMonsterButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.LeftOf="DeleteMonsterButton"
                             Click="SaveMonsterButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -232,6 +272,7 @@
                                    FontSize="24" />
                     </Button>
                     <Button x:Name="AddMonsterButton"
+                            Style="{ThemeResource TransparentButton}"
                             RelativePanel.LeftOf="SaveMonsterButton"
                             Click="AddMonsterButton_Click">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -248,7 +289,36 @@
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Monsters}"
-                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}" />
+                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <TextBlock x:Name="Name"
+                                                   Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                        <TextBlock x:Name="Type"
+                                                   Margin="8,0"
+                                                   RelativePanel.RightOf="Name"
+                                                   RelativePanel.AlignVerticalCenterWithPanel='True'>
+                                            <Run Text="{Binding Type}" /><Run Text="," />
+                                            <Run Text="{Binding Alignment, Converter={StaticResource AlignmentConverter}}" />
+                                        </TextBlock>
+                                        <TextBlock x:Name="ChallengeRating"
+                                                   RelativePanel.AlignRightWithPanel="True"
+                                                   RelativePanel.AlignVerticalCenterWithPanel="True">
+                                            <Run Text="CR:" />
+                                            <Run Text="{Binding ChallengeRating}" />
+                                        </TextBlock>
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                         <RelativePanel Grid.Column="1">
                             <StackPanel x:Name="MonsterInformationPanel"
                                         MinWidth="200"
@@ -383,7 +453,36 @@
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Items}"
-                                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}"/>
+                                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <RelativePanel.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="RelativePanel.AlignVerticalCenterWithPanel"
+                                                        Value="True" />
+                                            </Style>
+                                        </RelativePanel.Resources>
+                                        <TextBlock x:Name="Name"
+                                                   Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                        <TextBlock x:Name="Type"
+                                                   Text="{Binding Type}"
+                                                   Margin="8,0"
+                                                   RelativePanel.RightOf="Name" />
+                                        <TextBlock x:Name="Rarity"
+                                                   Text="{Binding Rarity}"
+                                                   RelativePanel.AlignRightWithPanel="True" />
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                         <StackPanel HorizontalAlignment="Left"
                                     Width="500"
                                     Grid.Column="1">
@@ -436,8 +535,43 @@
                             <ColumnDefinition MinWidth="300" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="SpellsListView" ItemsSource="{Binding Spells}"
-                                  SelectedValue="{Binding SelectedSpell, Mode=TwoWay}" />
+                        <ListView x:Name="SpellsListView"
+                                  ItemsSource="{Binding Spells}"
+                                  SelectedValue="{Binding SelectedSpell, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <RelativePanel.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="RelativePanel.AlignVerticalCenterWithPanel"
+                                                        Value="True" />
+                                            </Style>
+                                        </RelativePanel.Resources>
+                                        <TextBlock x:Name="Name"
+                                                   Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                   Margin="0,0,4,0"/>
+                                        <TextBlock x:Name="Level"
+                                                   Text="{Binding Level}"
+                                                   Margin="4,0"
+                                                   RelativePanel.RightOf="Name" />
+                                        <TextBlock x:Name="Type"
+                                                   Text="{Binding Type}"
+                                                   Margin="4,0"
+                                                   RelativePanel.RightOf="Level" />
+                                        <TextBlock x:Name="Range"
+                                                   Text="{Binding Range}"
+                                                   RelativePanel.AlignRightWithPanel="True" />
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                         <StackPanel HorizontalAlignment="Stretch"
                                     Grid.Column="1"
                                     Margin="8">
