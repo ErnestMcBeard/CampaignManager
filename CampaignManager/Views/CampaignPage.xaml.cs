@@ -32,5 +32,20 @@ namespace CampaignManager.Views
         {
             (DataContext as CampaignViewModel).NavigatedTo((int)e.Parameter);
         }
+
+        private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddEncounterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddMonsterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

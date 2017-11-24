@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CampaignManager.Models
 {
-    public class Encounter_CharacterController : ObservableObject
+    public class Encounter_MonsterController : ObservableObject
     {
         private int id;
         public int Id
@@ -26,25 +26,18 @@ namespace CampaignManager.Models
             set { Set(() => EncounterId, ref encounterId, value); }
         }
 
-        private string characterType;
-        public string CharacterType
+        private int monsterId;
+        public int MonsterId
         {
-            get { return characterType; }
-            set { Set(() => CharacterType, ref characterType, value); }
-        }
-
-        private int characterId;
-        public int CharacterId
-        {
-            get { return characterId; }
-            set { Set(() => CharacterId, ref characterId, value); }
+            get { return monsterId; }
+            set { Set(() => MonsterId, ref monsterId, value); }
         }
 
         public void Add()
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                db.Insert((Encounter_Character)this);
+                db.Insert((Encounter_Monster)this);
             }
         }
 
@@ -52,7 +45,7 @@ namespace CampaignManager.Models
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                db.Update((Encounter_Character)this);
+                db.Update((Encounter_Monster)this);
             }
         }
 
@@ -60,38 +53,35 @@ namespace CampaignManager.Models
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                db.Delete((Encounter_Character)this);
+                db.Delete((Encounter_Monster)this);
             }
         }
 
-        public static explicit operator Encounter_CharacterController(Encounter_Character encounterCharacter)
+        public static explicit operator Encounter_MonsterController(Encounter_Monster encounterCharacter)
         {
-            return new Encounter_CharacterController()
+            return new Encounter_MonsterController()
             {
                 Id = encounterCharacter.Id,
                 EncounterId = encounterCharacter.EncounterId,
-                CharacterType = encounterCharacter.CharacterType,
-                CharacterId = encounterCharacter.CharacterId
+                MonsterId = encounterCharacter.MonsterId
             };
         }
     }
 
-    public class Encounter_Character
+    public class Encounter_Monster
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int EncounterId { get; set; }
-        public string CharacterType { get; set; }
-        public int CharacterId { get; set; }
+        public int MonsterId { get; set; }
 
-        public static implicit operator Encounter_Character(Encounter_CharacterController encounterCharacter)
+        public static implicit operator Encounter_Monster(Encounter_MonsterController encounterCharacter)
         {
-            return new Encounter_Character()
+            return new Encounter_Monster()
             {
                 Id = encounterCharacter.Id,
                 EncounterId = encounterCharacter.EncounterId,
-                CharacterType = encounterCharacter.CharacterType,
-                CharacterId = encounterCharacter.CharacterId
+                MonsterId = encounterCharacter.MonsterId
             };
         }
     }

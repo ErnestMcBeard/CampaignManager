@@ -71,13 +71,13 @@ namespace CampaignManager.Models
             }
         }
 
-        public ObservableCollection<Character> GetCharacters()
+        public ObservableCollection<Monster> GetMonsters()
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                var characterIds = db.Table<Encounter_Character>().Where(x => x.EncounterId == Id).Select(x => x.CharacterId);
-                var characterObjs = db.Table<Character>().Where(x => characterIds.Contains(x.Id));
-                return new ObservableCollection<Character>(characterObjs);
+                var monsterIds = db.Table<Encounter_Monster>().Where(x => x.EncounterId == Id).Select(x => x.MonsterId);
+                var monsterObjs = db.Table<Monster>().Where(x => monsterIds.Contains(x.Id));
+                return new ObservableCollection<Monster>(monsterObjs);
             }
         }
 

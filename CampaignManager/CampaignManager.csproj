@@ -126,9 +126,10 @@
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Alignment.cs" />
     <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\Campaign_Player.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Encounter.cs" />
-    <Compile Include="Models\Encounter_Character.cs" />
+    <Compile Include="Models\Encounter_Monster.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Monster.cs" />
