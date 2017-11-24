@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="CampaignManager.Views.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CampaignManager.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="d4" Content="d4" HorizontalAlignment="Left" Margin="199,133,0,0" VerticalAlignment="Top" Click="d4_Click"/>
+        <Button x:Name="d6" Content="d6" HorizontalAlignment="Left" Margin="199,170,0,0" VerticalAlignment="Top" Click="d6_Click"/>
+        <Button x:Name="d8" Content="d8" HorizontalAlignment="Left" Margin="199,207,0,0" VerticalAlignment="Top" Click="d8_Click"/>
+        <Button x:Name="d10" Content="d10" HorizontalAlignment="Left" Margin="199,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.312,0.43" Click="d10_Click"/>
+        <Button x:Name="d12" Content="d12" HorizontalAlignment="Left" Margin="199,281,0,0" VerticalAlignment="Top" Click="d12_Click"/>
+        <Button x:Name="d20" Content="d20" HorizontalAlignment="Left" Margin="199,318,0,0" VerticalAlignment="Top" Click="d20_Click"/>
+        <Button x:Name="d100" Content="d100" HorizontalAlignment="Left" Margin="199,355,0,0" VerticalAlignment="Top" Click="d100_Click"/>
+        <TextBox x:Name="d4_result" HorizontalAlignment="Left" Margin="253,133,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" TextChanged="d4_result_TextChanged"/>
+        <TextBox x:Name="d6_result" HorizontalAlignment="Left" Margin="253,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="d8_result" HorizontalAlignment="Left" Margin="253,207,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="d10_result" HorizontalAlignment="Left" Margin="253,244,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="d12_result" HorizontalAlignment="Left" Margin="253,281,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="d20_result" HorizontalAlignment="Left" Margin="253,318,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" RenderTransformOrigin="0.005,-0.026"/>
+        <TextBox x:Name="d100_result" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Margin="258,355,0,0"/>
+    </Grid>
+</Page>

@@ -47,5 +47,15 @@ namespace CampaignManager.Views
         {
 
         }
+
+        private void DeleteEncounterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveEncounterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

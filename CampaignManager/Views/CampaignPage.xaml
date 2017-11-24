@@ -26,7 +26,9 @@
                    Text="{Binding Campaign.Name}"
                    FontSize="{StaticResource LargeFontSize}" />
 
-        <RelativePanel Grid.Row="1">
+        <TextBlock Grid.Row="1" 
+                   Text="Encounters"/>
+        <!--<RelativePanel Grid.Row="1">
             <TextBlock Text="Encounters"/>
             <Button x:Name="AddEncounterButton"
                     RelativePanel.AlignRightWithPanel="True"
@@ -35,7 +37,7 @@
                            Text="&#xE710;"
                            FontSize="24" />
             </Button>
-        </RelativePanel>
+        </RelativePanel>-->
         <ListView Grid.Row="2"
                   x:Name="EncounterList"
                   ItemsSource="{Binding Encounters}">
@@ -58,28 +60,106 @@
         </ListView>
 
         <RelativePanel Grid.Row="1"
-                       Grid.Column="1"
-                       Grid.RowSpan="4"
-                       x:Name="EncounterDetails">
-        </RelativePanel>
+                       Grid.Column="1">
+            <Button x:Name="DeleteEncounterButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Click="DeleteEncounterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+            </Button>
+            <Button x:Name="SaveEncounterButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="DeleteEncounterButton"
+                            Click="SaveEncounterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+            </Button>
+            <Button x:Name="AddEncounterButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="SaveEncounterButton"
+                            Click="AddEncounterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
 
-        <RelativePanel Grid.Row="1"
-                       Grid.Column="2">
-            <TextBlock Text="Monsters"/>
-            <Button x:Name="AddMonsterButton"
+            </Button>
+        </RelativePanel>
+        
+        <RelativePanel Grid.Row="2"
+                       Grid.Column="1"
+                       x:Name="EncounterDetails"
+                       Margin="10,0">
+            <RelativePanel.Resources>
+                <Style TargetType="TextBlock" x:Key="PaddedLabel">
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Padding" Value="6"/>
+                    <Setter Property="Margin" Value="0,0,0,20"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="300"/>
+                    <Setter Property="Margin" Value="0,0,0,20"/>
+                </Style>
+            </RelativePanel.Resources>
+            
+            <TextBlock x:Name="NameLabel"
+                       Text="Name"
+                       Style="{ThemeResource PaddedLabel}"/>
+            <TextBox x:Name="EncounterName"
+                     Text="New Encounter"
+                     RelativePanel.RightOf="NameLabel"/>
+            
+            <TextBlock x:Name="NumberLabel"
+                       Text="Number"
+                       RelativePanel.Below="NameLabel"
+                       Style="{ThemeResource PaddedLabel}"/>
+            <TextBox x:Name="EncounterNumber"
+                     Text="0"
+                     RelativePanel.Below="EncounterName"
+                     RelativePanel.RightOf="NumberLabel"/>
+            
+            <TextBlock x:Name="CompleteLabel"
+                       Text="Complete"
+                       RelativePanel.Below="EncounterNumber"
+                       Style="{ThemeResource PaddedLabel}"/>
+            <CheckBox x:Name="EncounterCompleted"
+                      RelativePanel.Below="EncounterNumber"
+                      RelativePanel.RightOf="CompleteLabel"
+                      Margin="0,0,0,20"/>
+
+            <TextBlock x:Name="MonsterLabel" 
+                       Text="Monsters"
+                       RelativePanel.Below="CompleteLabel"
+                       Style="{ThemeResource PaddedLabel}"/>
+
+            <Button x:Name="DeleteMonsterButton"
+                    Style="{ThemeResource TransparentButton}"
+                    RelativePanel.Below="EncounterCompleted"
                     RelativePanel.AlignRightWithPanel="True"
-                    Click="AddMonsterButton_Click">
+                    Click="DeleteEncounterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE74D;"
+                           FontSize="24" />
+            </Button>
+            <Button x:Name="AddMonsterButton"
+                    Style="{ThemeResource TransparentButton}"
+                    RelativePanel.Below="EncounterCompleted"
+                    RelativePanel.LeftOf="DeleteMonsterButton"
+                    Click="AddEncounterButton_Click">
                 <TextBlock FontFamily="Segoe MDL2 Assets"
                            Text="&#xE710;"
                            FontSize="24" />
+
             </Button>
+
+            <ListView x:Name="MonsterList">
+                
+            </ListView>
+
         </RelativePanel>
 
-        <ListView Grid.Row="2"
-                  Grid.Column="2"
-                  Grid.RowSpan="3">
-            
-        </ListView>
 
 
     </Grid>
