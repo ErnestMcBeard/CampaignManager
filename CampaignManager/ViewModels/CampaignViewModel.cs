@@ -29,6 +29,20 @@ namespace CampaignManager.ViewModels
             set { Set(() => Encounters, ref encounters, value); }
         }
 
+        private ObservableCollection<MonsterController> encounterMonsters = new ObservableCollection<MonsterController>();
+        public ObservableCollection<MonsterController> EncounterMonsters
+        {
+            get { return encounterMonsters; }
+            set { Set(() => EncounterMonsters, ref encounterMonsters, value); }
+        }
+
+        private ObservableCollection<MonsterController> allMonsters = new ObservableCollection<MonsterController>();
+        public ObservableCollection<MonsterController> AllMonsters
+        {
+            get { return allMonsters; }
+            set { Set(() => AllMonsters, ref allMonsters, value); }
+        }
+
         private ObservableCollection<PlayerController> players = new ObservableCollection<PlayerController>();
         public ObservableCollection<PlayerController> Players
         {
@@ -50,15 +64,30 @@ namespace CampaignManager.ViewModels
             set { Set(() => SelectedEncounter, ref selectedEncounter, value); }
         }
 
-        public void NavigatedTo(int campaignId)
+        private MonsterController selectedEncounterMonster;
+        public MonsterController SelectedEncounterMonster
         {
-            Campaign = GetCampaign(campaignId);
-            GetEncounters();
-            ClearEncounterDetails();
-            GetPlayers();            
+            get { return selectedEncounterMonster; }
+            set { Set(() => SelectedEncounterMonster, ref selectedEncounterMonster, value); }
         }
 
-        private CampaignController GetCampaign(int id)
+        private MonsterController selectedAllMonster;
+        public MonsterController SelectedAllMonster
+        {
+            get { return selectedAllMonster; }
+            set { Set(() => SelectedAllMonster, ref selectedAllMonster, value); }
+        }
+
+        public void NavigatedTo(int campaignId)
+        {
+            GetCampaign(campaignId);
+            GetEncounters();
+            ClearEncounterDetails();
+            GetAllMonsters();
+            GetPlayers();
+        }
+
+        private void GetCampaign(int id)
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
@@ -66,14 +95,17 @@ namespace CampaignManager.ViewModels
                 foreach (var campaign in query)
                 {
                     if (campaign.Id == id)
-                        return (CampaignController)campaign;
+                    {
+                        Campaign = (CampaignController)campaign;
+                        return;
+                    }
                 }
-                return null;
             }
         }
 
         private void GetEncounters()
         {
+            Encounters.Clear();
             Encounters = Campaign.GetEncounters();
         }
 
@@ -95,6 +127,19 @@ namespace CampaignManager.ViewModels
             //}
         }
 
+        private void GetAllMonsters()
+        {
+            AllMonsters.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var table = db.Table<Monster>();
+                foreach (var monster in table)
+                {
+                    AllMonsters.Add((MonsterController)monster);
+                }
+            }
+        }
+
         private EncounterController GetLastEncounter()
         {
             return Encounters.OrderByDescending(x => x.Number).FirstOrDefault();
@@ -114,14 +159,18 @@ namespace CampaignManager.ViewModels
             SelectedEncounter = new EncounterController()
             {
                 //Name = "New Encounter",
+                CampaignId = Campaign.Id,
                 Number = nextNum
             };
         }
 
-        public void EncounterSelected()
+        public void EncounterSelected(EncounterController clicked)
         {
             EncounterDetailsHeader = "Selected Encounter";
             encounterState = EncounterState.Editing;
+
+            EncounterMonsters.Clear();
+            EncounterMonsters = clicked.GetMonsters();
         }
 
         public void SaveEncounterClick()
@@ -158,6 +207,36 @@ namespace CampaignManager.ViewModels
             EncounterDetailsHeader = String.Empty;
             GetEncounters();
             SelectedEncounter = null;
+        }
+
+        public void AddMonsterClick()
+        {
+            if (SelectedAllMonster != null && SelectedEncounter != null)
+            {
+                using (var db = SQLiteHelper.CreateConnection())
+                {
+                    Encounter_MonsterController item = new Encounter_MonsterController()
+                    {
+                        EncounterId = SelectedEncounter.Id,
+                        MonsterId = SelectedAllMonster.Id
+                    };
+                    item.Add();
+                }
+                EncounterMonsters = SelectedEncounter.GetMonsters();
+            }
+        }
+
+        public void DeleteMonsterClick()
+        {
+            if (SelectedEncounterMonster != null)
+            {
+                using (var db = SQLiteHelper.CreateConnection())
+                {
+                    var item = (Encounter_MonsterController)db.Table<Encounter_Monster>().Where(x => x.EncounterId == SelectedEncounter.Id && x.MonsterId == SelectedEncounterMonster.Id).FirstOrDefault();
+                    item.Delete();
+                }
+            }
+            EncounterMonsters = SelectedEncounter.GetMonsters();
         }
     }
 }
