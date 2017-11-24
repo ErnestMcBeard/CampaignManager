@@ -598,6 +598,86 @@
                     </Grid>
                 </RelativePanel>
             </PivotItem>
+            <PivotItem Header="Abilities">
+                <RelativePanel>
+                    <Button x:Name="DeleteAbilityButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Click="DeleteAbilityButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SaveAbilityButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="DeleteAbilityButton"
+                            Click="SaveAbilityButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddAbilityButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="SaveAbilityButton"
+                            Click="AddAbilityButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                    <Grid RelativePanel.Below="AddAbilityButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Abilities}"
+                                  SelectedValue="{Binding SelectedAbility, Mode=TwoWay}"
+                                  ItemContainerStyle="{ThemeResource ItemStretch}">
+                            
+                        </ListView>
+                    </Grid>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Actions">
+                <RelativePanel>
+                    <Button x:Name="DeleteActionButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Click="DeleteActionButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74D;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="SaveActionButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="DeleteActionButton"
+                            Click="SaveActionButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE74E;"
+                                   FontSize="24" />
+                    </Button>
+                    <Button x:Name="AddActionButton"
+                            Style="{ThemeResource TransparentButton}"
+                            RelativePanel.LeftOf="SaveActionButton"
+                            Click="AddActionButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE710;"
+                                   FontSize="24" />
+                    </Button>
+                    <Grid RelativePanel.Below="AddActionButton">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Actions}"
+                                  SelectedValue="{Binding SelectedAction, Mode=TwoWay}">
+                            
+                        </ListView>
+                    </Grid>
+                </RelativePanel>
+            </PivotItem>
         </Pivot>
     </Grid>
 </Page>

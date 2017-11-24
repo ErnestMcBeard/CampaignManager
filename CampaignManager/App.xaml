@@ -124,6 +124,11 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="ItemStretch"
+                   TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Stretch" />
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>

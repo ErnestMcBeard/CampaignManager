@@ -117,5 +117,51 @@ namespace CampaignManager.Views
         {
             ViewModel.NavigateToEncounterScreen(e.ClickedItem as CampaignController);
         }
+
+        private void DeleteAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedAbility?.Delete();
+            ViewModel.GetAbilities();
+        }
+
+        private void SaveAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.SelectedAbility?.Id == 0)
+            {
+                ViewModel.SelectedAbility.Add();
+            }
+            else
+            {
+                ViewModel.SelectedAbility.Save();
+            }
+            ViewModel.GetAbilities();
+        }
+
+        private void AddAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedAbility = new AbilityController();
+        }
+
+        private void DeleteActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedAction?.Delete();
+        }
+
+        private void SaveActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.SelectedAction?.Id == 0)
+            {
+                ViewModel.SelectedAction.Add();
+            }
+            else
+            {
+                ViewModel.SelectedAction?.Save();
+            }
+        }
+
+        private void AddActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedAction = new ActionController();
+        }
     }
 }

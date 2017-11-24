@@ -1,13 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CampaignManager.Helpers;
+using GalaSoft.MvvmLight;
+using SQLite.Net.Attributes;
 
 namespace CampaignManager.Models
 {
-    public class Ability : ObservableObject
+    public class AbilityController : ObservableObject
     {
         private int id;
         public int Id
@@ -35,6 +32,61 @@ namespace CampaignManager.Models
         {
             get { return description; }
             set { Set(() => Descritption, ref description, value); }
+        }
+
+        public void Save()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Update((Ability)this);
+            }
+        }
+
+        public void Add()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Insert((Ability)this);
+            }
+        }
+
+        public void Delete()
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                db.Delete((Ability)this);
+            }
+        }
+
+        public static explicit operator AbilityController(Ability ability)
+        {
+            return new AbilityController()
+            {
+                Id = ability.Id,
+                Name = ability.Name,
+                Effect = ability.Effect,
+                Descritption = ability.Description
+            };
+        }
+    }
+
+    public class Ability
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Effect { get; set; }
+        public string Description { get; set; }
+
+        public static implicit operator Ability(AbilityController ability)
+        {
+            return new Ability()
+            {
+                Id = ability.Id,
+                Name = ability.Name,
+                Effect = ability.Effect,
+                Description = ability.Descritption
+            };
         }
     }
 }

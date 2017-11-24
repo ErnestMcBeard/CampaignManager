@@ -25,6 +25,8 @@ namespace CampaignManager.Helpers
                 db.CreateTable<Monster>();
                 db.CreateTable<Item>();
                 db.CreateTable<Spell>();
+                db.CreateTable<Ability>();
+                db.CreateTable<Action>();
                 db.CreateTable<Encounter>();
                 db.CreateTable<Encounter_Monster>();
             }
