@@ -45,6 +45,20 @@ namespace CampaignManager.ViewModels
             get { return spells; }
             set { Set(() => Spells, ref spells, value); }
         }
+
+        private ObservableCollection<AbilityController> abilities = new ObservableCollection<AbilityController>();
+        public ObservableCollection<AbilityController> Abilities
+        {
+            get { return abilities; }
+            set { Set(() => Abilities, ref abilities, value); }
+        }
+
+        private ObservableCollection<ActionController> actions = new ObservableCollection<ActionController>();
+        public ObservableCollection<ActionController> Actions
+        {
+            get { return actions; }
+            set { Set(() => Actions, ref actions, value); }
+        }
         #endregion
 
         #region SelectedItems
@@ -74,6 +88,20 @@ namespace CampaignManager.ViewModels
         {
             get { return selectedSpell; }
             set { Set(() => SelectedSpell, ref selectedSpell, value); }
+        }
+
+        private AbilityController selectedAbility;
+        public AbilityController SelectedAbility
+        {
+            get { return selectedAbility; }
+            set { Set(() => SelectedAbility, ref selectedAbility, value); }
+        }
+
+        private ActionController selectedAction;
+        public ActionController SelectedAction
+        {
+            get { return selectedAction; }
+            set { Set(() => SelectedAction, ref selectedAction, value); }
         }
         #endregion
 
@@ -117,6 +145,8 @@ namespace CampaignManager.ViewModels
             GetMonsters();
             GetItems();
             GetSpells();
+            GetAbilities();
+            GetActions();
         }
 
         public void NavigateToEncounterScreen(CampaignController campaign)
@@ -187,6 +217,32 @@ namespace CampaignManager.ViewModels
                 foreach (var spell in spellQuery)
                 {
                     Spells.Add((SpellController)spell);
+                }
+            }
+        }
+
+        public void GetAbilities()
+        {
+            Abilities.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var abilityQuery = db.Table<Ability>();
+                foreach (var ability in abilityQuery)
+                {
+                    Abilities.Add((AbilityController)ability);
+                }
+            }
+        }
+
+        public void GetActions()
+        {
+            Actions.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var actionsQuery = db.Table<Action>();
+                foreach (var action in actionsQuery)
+                {
+                    Actions.Add((ActionController)action);
                 }
             }
         }
