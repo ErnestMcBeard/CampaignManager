@@ -23,6 +23,8 @@ namespace CampaignManager.Views
     /// </summary>
     public sealed partial class CampaignPage : Page
     {
+        private CampaignViewModel ViewModel;
+
         public CampaignPage()
         {
             this.InitializeComponent();
@@ -30,7 +32,8 @@ namespace CampaignManager.Views
 
         override protected void OnNavigatedTo(NavigationEventArgs e)
         {
-            (DataContext as CampaignViewModel).NavigatedTo((int)e.Parameter);
+            ViewModel = (DataContext as CampaignViewModel);
+            ViewModel.NavigatedTo((int)e.Parameter);
         }
 
         private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
@@ -40,22 +43,27 @@ namespace CampaignManager.Views
 
         private void AddEncounterButton_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.AddEncounterClick();
+        }
 
+        private void SaveEncounterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SaveEncounterClick();
+        }
+
+        private void DeleteEncounterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DeleteEncounterClick();
         }
 
         private void AddMonsterButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void DeleteEncounterButton_Click(object sender, RoutedEventArgs e)
+        
+        private void EncounterList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-
-        private void SaveEncounterButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            ViewModel.EncounterSelected();
         }
     }
 }
