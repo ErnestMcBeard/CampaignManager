@@ -145,6 +145,7 @@ namespace CampaignManager.Views
         private void DeleteActionButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedAction?.Delete();
+            ViewModel.GetActions();
         }
 
         private void SaveActionButton_Click(object sender, RoutedEventArgs e)
@@ -157,6 +158,7 @@ namespace CampaignManager.Views
             {
                 ViewModel.SelectedAction?.Save();
             }
+            ViewModel.GetActions();
         }
 
         private void AddActionButton_Click(object sender, RoutedEventArgs e)

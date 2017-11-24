@@ -238,15 +238,27 @@
                                 <CheckBox Content="Survival"
                                             IsChecked="{Binding SelectedPlayer.Survival, Mode=TwoWay}" />
                             </StackPanel>
-                            <Pivot x:Name="PlayerStuffPivot">
+                            <Pivot x:Name="PlayerStuffPivot"
+                                   RelativePanel.RightOf="EditSkillPanel">
                                 <PivotItem Header="Abilities">
-                                    
+                                    <ListView ItemsSource="{Binding PlayerAbilities}">
+                                        
+                                    </ListView>
                                 </PivotItem>
                                 <PivotItem Header="Actions">
-                                    
+                                    <ListView ItemsSource="{Binding PlayerActions}">
+                                        
+                                    </ListView>
                                 </PivotItem>
                                 <PivotItem Header="Spells">
-                                    
+                                    <ListView ItemsSource="{Binding PlayerSpells}">
+                                        
+                                    </ListView>
+                                </PivotItem>
+                                <PivotItem Header="Items">
+                                    <ListView ItemsSource="{Binding PlayerItems}">
+                                        
+                                    </ListView>
                                 </PivotItem>
                             </Pivot>
                         </RelativePanel>
@@ -635,8 +647,33 @@
                         <ListView ItemsSource="{Binding Abilities}"
                                   SelectedValue="{Binding SelectedAbility, Mode=TwoWay}"
                                   ItemContainerStyle="{ThemeResource ItemStretch}">
-                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
+                        <RelativePanel Grid.Column="1">
+                            <StackPanel x:Name="AbilityInformationPanel"
+                                        Width="200"
+                                        Margin="4,0">
+                                <TextBox Header="Name"
+                                         Text="{Binding SelectedAbility.Name, Mode=TwoWay}" />
+                                <TextBox Header="Effect"
+                                         Text="{Binding SelectedAbility.Effect, Mode=TwoWay}" />
+                            </StackPanel>
+                            <TextBox RelativePanel.RightOf="AbilityInformationPanel"
+                                     RelativePanel.AlignRightWithPanel="True"
+                                     RelativePanel.AlignTopWithPanel="True"
+                                     RelativePanel.AlignBottomWithPanel="True"
+                                     Header="Description"
+                                     Text="{Binding SelectedAbility.Description, Mode=TwoWay}"
+                                     TextWrapping="Wrap"/>
+                        </RelativePanel>
                     </Grid>
                 </RelativePanel>
             </PivotItem>
@@ -666,15 +703,52 @@
                                    Text="&#xE710;"
                                    FontSize="24" />
                     </Button>
-                    <Grid RelativePanel.Below="AddActionButton">
+                    <Grid RelativePanel.Below="AddActionButton"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignBottomWithPanel="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Actions}"
-                                  SelectedValue="{Binding SelectedAction, Mode=TwoWay}">
-                            
+                                  SelectedValue="{Binding SelectedAction, Mode=TwoWay}"
+                                  ItemContainerStyle="{ThemeResource ItemStretch}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                        <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True"
+                                                   RelativePanel.AlignRightWithPanel="True">
+                                            <Run Text="{Binding DamageDice}" /><Run Text="," />
+                                            <Run Text="{Binding DamageType}" />
+                                        </TextBlock>
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
+                        <RelativePanel Grid.Column="1">
+                            <StackPanel x:Name="InformationPanel"
+                                        Width="200"
+                                        Margin="4,0">
+                                <TextBox Header="Name"
+                                         Text="{Binding SelectedAction.Name, Mode=TwoWay}" />
+                                <TextBox Header="Damage Type"
+                                         Text="{Binding SelectedAction.DamageType, Mode=TwoWay}" />
+                                <TextBox Header="Damage Dice"
+                                         Text="{Binding SelectedAction.DamageDice, Mode=TwoWay}" />
+                                <TextBox Header="Damage"
+                                         Text="{Binding SelectedAction.Damage, Mode=TwoWay}" />
+                            </StackPanel>
+                            <TextBox Header="Description"
+                                     Text="{Binding SelectedAction.Description, Mode=TwoWay}"
+                                     RelativePanel.RightOf="InformationPanel"
+                                     RelativePanel.AlignRightWithPanel="True"
+                                     RelativePanel.AlignTopWithPanel="True"
+                                     RelativePanel.AlignBottomWithPanel="True" />
+                        </RelativePanel>
                     </Grid>
                 </RelativePanel>
             </PivotItem>

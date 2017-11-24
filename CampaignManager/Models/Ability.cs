@@ -28,10 +28,10 @@ namespace CampaignManager.Models
         }
 
         private string description;
-        public string Descritption
+        public string Description
         {
             get { return description; }
-            set { Set(() => Descritption, ref description, value); }
+            set { Set(() => Description, ref description, value); }
         }
 
         public void Save()
@@ -65,7 +65,7 @@ namespace CampaignManager.Models
                 Id = ability.Id,
                 Name = ability.Name,
                 Effect = ability.Effect,
-                Descritption = ability.Description
+                Description = ability.Description
             };
         }
     }
@@ -85,7 +85,7 @@ namespace CampaignManager.Models
                 Id = ability.Id,
                 Name = ability.Name,
                 Effect = ability.Effect,
-                Description = ability.Descritption
+                Description = ability.Description
             };
         }
     }
