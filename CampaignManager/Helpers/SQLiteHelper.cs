@@ -20,11 +20,13 @@ namespace CampaignManager.Helpers
             using (var db = CreateConnection())
             {
                 db.CreateTable<Campaign>();
+                db.CreateTable<Campaign_Player>();
                 db.CreateTable<Player>();
                 db.CreateTable<Monster>();
                 db.CreateTable<Item>();
                 db.CreateTable<Spell>();
                 db.CreateTable<Encounter>();
+                db.CreateTable<Encounter_Monster>();
             }
         }
     }

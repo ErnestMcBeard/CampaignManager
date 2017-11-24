@@ -26,15 +26,18 @@ namespace CampaignManager.ViewModels
             set { Set(() => Encounters, ref encounters, value); }
         }
 
-        public CampaignViewModel()
+        private ObservableCollection<PlayerController> players = new ObservableCollection<PlayerController>();
+        public ObservableCollection<PlayerController> Players
         {
-            
+            get { return players; }
+            set { Set(() => Players, ref players, value); }
         }
 
         public void NavigatedTo(int campaignId)
         {
             GetCampaign(campaignId);
             GetEncounters(campaignId);
+            GetPlayers(campaignId);
         }
 
         private CampaignController GetCampaign(int id)
@@ -61,6 +64,24 @@ namespace CampaignManager.ViewModels
                     if (encounter.CampaignId == campaignId)
                     {
                         Encounters.Add((EncounterController)encounter);
+                    }
+                }
+            }
+        }
+
+        private void GetPlayers(int campaignId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var campPlayerQuery = db.Table<Campaign_Player>();
+                var playerQuery = db.Table<Player>().ToList();
+
+                foreach (var campPlayer in campPlayerQuery)
+                {
+                    if (campPlayer.CampaignId == campaignId)
+                    {
+                        PlayerController playerMatch = (PlayerController)playerQuery.Where(x => x.Id == campPlayer.PlayerId).FirstOrDefault();
+                        Players.Add(playerMatch);
                     }
                 }
             }

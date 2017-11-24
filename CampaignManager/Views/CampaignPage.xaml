@@ -8,29 +8,79 @@
     DataContext="{Binding CampaignPageViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock
-            x:Name="CampaignName"
-            Text="{Binding Campaign.Name}"
-            FontSize="{StaticResource LargeFontSize}" />
+        <TextBlock x:Name="CampaignName"
+                   Text="{Binding Campaign.Name}"
+                   FontSize="{StaticResource LargeFontSize}" />
 
-        <ListView
-            Grid.Row="1"
-            x:Name="EncounterList">
+        <RelativePanel Grid.Row="1">
+            <TextBlock Text="Encounters"/>
+            <Button x:Name="AddEncounterButton"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Click="AddEncounterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE710;"
+                           FontSize="24" />
+            </Button>
+        </RelativePanel>
+        <ListView Grid.Row="2"
+                  x:Name="EncounterList"
+                  ItemsSource="{Binding Encounters}">
         </ListView>
 
-        <RelativePanel
-            Grid.Row="1"
-            Grid.Column="1"
-            x:Name="EncounterDetails"/>
+        <RelativePanel Grid.Row="3">
+            <TextBlock Text="Players"/>
+            <Button x:Name="AddPlayerButton"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Click="AddPlayerButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE710;"
+                           FontSize="24" />
+            </Button>
+        </RelativePanel>
+
+        <ListView Grid.Row="4"
+                  x:Name="PlayerList"
+                  ItemsSource="{Binding Players}">
+        </ListView>
+
+        <RelativePanel Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.RowSpan="4"
+                       x:Name="EncounterDetails">
+        </RelativePanel>
+
+        <RelativePanel Grid.Row="1"
+                       Grid.Column="2">
+            <TextBlock Text="Monsters"/>
+            <Button x:Name="AddMonsterButton"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Click="AddMonsterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE710;"
+                           FontSize="24" />
+            </Button>
+        </RelativePanel>
+
+        <ListView Grid.Row="2"
+                  Grid.Column="2"
+                  Grid.RowSpan="3">
+            
+        </ListView>
+
+
     </Grid>
 </Page>
