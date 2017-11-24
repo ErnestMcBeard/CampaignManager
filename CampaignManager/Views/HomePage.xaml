@@ -90,7 +90,6 @@
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE710;"
                                    FontSize="24" />
-
                     </Button>
                     <Grid RelativePanel.Below="AddPlayerButton"
                           RelativePanel.AlignLeftWithPanel="True"
@@ -241,24 +240,104 @@
                             <Pivot x:Name="PlayerStuffPivot"
                                    RelativePanel.RightOf="EditSkillPanel">
                                 <PivotItem Header="Abilities">
-                                    <ListView ItemsSource="{Binding PlayerAbilities}">
-                                        
-                                    </ListView>
+                                    <RelativePanel>
+                                        <Button x:Name="RemovePlayerAbilityButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                Click="RemovePlayerAbilityButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <Button x:Name="AddPlayerAbilityButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemovePlayerAbilityButton"
+                                                Click="AddPlayerAbilityButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <ListView x:Name="PlayerAbilityListView"
+                                                  ItemsSource="{Binding PlayerAbilities}"
+                                                  RelativePanel.Below="AddPlayerAbilityButton">
+                                            
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                                 <PivotItem Header="Actions">
-                                    <ListView ItemsSource="{Binding PlayerActions}">
-                                        
-                                    </ListView>
+                                    <RelativePanel>
+                                        <Button x:Name="RemovePlayerActionButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                Click="RemovePlayerActionButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <Button x:Name="AddPlayerActionButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemovePlayerActionButton"
+                                                Click="AddPlayerActionButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <ListView x:Name="PlayerActionListView"
+                                                  ItemsSource="{Binding PlayerActions}"
+                                                  RelativePanel.Below="AddPlayerActionButton">
+                                            
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                                 <PivotItem Header="Spells">
-                                    <ListView ItemsSource="{Binding PlayerSpells}">
-                                        
-                                    </ListView>
+                                    <RelativePanel>
+                                        <Button x:Name="RemovePlayerSpellButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                Click="RemovePlayerSpellButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <Button x:Name="AddPlayerSpellButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemovePlayerSpellButton"
+                                                Click="AddPlayerSpellButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <ListView x:Name="PlayerSpellListView"
+                                                  ItemsSource="{Binding PlayerSpells}"
+                                                  RelativePanel.Below="AddPlayerSpellButton">
+                                            
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                                 <PivotItem Header="Items">
-                                    <ListView ItemsSource="{Binding PlayerItems}">
-                                        
-                                    </ListView>
+                                    <RelativePanel>
+                                        <Button x:Name="RemovePlayerItemButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                Click="RemovePlayerItemButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <Button x:Name="AddPlayerItemButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemovePlayerItemButton"
+                                                Click="AddPlayerItemButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <ListView x:Name="PlayerItemListView"
+                                                  ItemsSource="{Binding PlayerItems}"
+                                                  RelativePanel.Below="AddPlayerItemButton">
+                                            
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                             </Pivot>
                         </RelativePanel>
@@ -404,6 +483,14 @@
                                 <CheckBox Content="Survival"
                                           IsChecked="{Binding SelectedMonster.Survival, Mode=TwoWay}" />
                             </StackPanel>
+                            <Pivot RelativePanel.RightOf="MonsterSkillPanel">
+                                <PivotItem Header="Abilites">
+                                    
+                                </PivotItem>
+                                <PivotItem Header="Actions">
+                                    
+                                </PivotItem>
+                            </Pivot>
 
                         </RelativePanel>
                     </Grid>

@@ -25,6 +25,12 @@ namespace CampaignManager.Views
             ViewModel.GetCampaigns();
         }
 
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.NavigateToEncounterScreen(e.ClickedItem as CampaignController);
+        }
+
+        #region PlayerButtons
         private void DeletePlayerButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedPlayer?.Delete();
@@ -50,6 +56,33 @@ namespace CampaignManager.Views
             ViewModel.SelectedPlayer = new PlayerController();
         }
 
+        private async void AddPlayerAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            await new AddAbilityToPlayerDialog(ViewModel.SelectedPlayer.Id).ShowAsync();
+            ViewModel.GetPlayerItems();
+        }
+
+        private void RemovePlayerAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveAbilityFromPlayer((PlayerAbilityListView.SelectedValue as AbilityController).Id);
+            ViewModel.GetPlayerItems();
+        }
+
+        private void RemovePlayerActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveActionFromPlayer((PlayerActionListView.SelectedValue as ActionController).Id);
+            ViewModel.GetPlayerItems();
+        }
+
+        private async void AddPlayerActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            await new AddActionToPlayerDialog(ViewModel.SelectedPlayer.Id).ShowAsync();
+            ViewModel.GetPlayerItems();
+        }
+
+        #endregion
+
+        #region MonsterButtons
         private void DeleteMonsterButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedMonster?.Delete();
@@ -74,7 +107,9 @@ namespace CampaignManager.Views
         {
             ViewModel.SelectedMonster = new MonsterController();
         }
+        #endregion
 
+        #region ItemButtons
         private async void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new AddItemDialog();
@@ -93,7 +128,9 @@ namespace CampaignManager.Views
             ViewModel.SelectedItem?.Delete();
             ViewModel.GetItems();
         }
+        #endregion
 
+        #region SpellButtons
         private async void AddSpellButton_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new AddSpellDialog();
@@ -112,12 +149,9 @@ namespace CampaignManager.Views
             ViewModel.SelectedSpell?.Delete();
             ViewModel.GetSpells();
         }
+        #endregion
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            ViewModel.NavigateToEncounterScreen(e.ClickedItem as CampaignController);
-        }
-
+        #region AbilityButtons
         private void DeleteAbilityButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedAbility?.Delete();
@@ -141,7 +175,9 @@ namespace CampaignManager.Views
         {
             ViewModel.SelectedAbility = new AbilityController();
         }
+        #endregion
 
+        #region ActionButtons
         private void DeleteActionButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedAction?.Delete();
@@ -164,6 +200,27 @@ namespace CampaignManager.Views
         private void AddActionButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SelectedAction = new ActionController();
+        }
+        #endregion
+
+        private void RemovePlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemovePlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
