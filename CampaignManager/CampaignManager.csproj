@@ -138,6 +138,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Player_Ability.cs" />
     <Compile Include="Models\Player_Action.cs" />
+    <Compile Include="Models\Player_Item.cs" />
     <Compile Include="Models\Player_Spell.cs" />
     <Compile Include="Models\Spell.cs" />
     <Compile Include="Services\ActivationService.cs" />

@@ -66,8 +66,78 @@ namespace CampaignManager.ViewModels
         public PlayerController SelectedPlayer
         {
             get { return selectedPlayer; }
-            set { Set(() => SelectedPlayer, ref selectedPlayer, value); }
+            set
+            {
+                Set(() => SelectedPlayer, ref selectedPlayer, value);
+                GetPlayerItems();
+            }
         }
+
+        #region PlayerItems
+        private ObservableCollection<ItemController> playerItems;
+        public ObservableCollection<ItemController> PlayerItems
+        {
+            get { return playerItems; }
+            set { Set(() => PlayerItems, ref playerItems, value); }
+        }
+
+        private ObservableCollection<SpellController> playerSpells;
+        public ObservableCollection<SpellController> PlayerSpells
+        {
+            get { return playerSpells; }
+            set { Set(() => PlayerSpells, ref playerSpells, value); }
+        }
+
+        private ObservableCollection<ActionController> playerActions;
+        public ObservableCollection<ActionController> PlayerActions
+        {
+            get { return playerActions; }
+            set { Set(() => PlayerActions, ref playerActions, value); }
+        }
+
+        private ObservableCollection<AbilityController> playerAbilities;
+        public ObservableCollection<AbilityController> PlayerAbilities
+        {
+            get { return playerAbilities; }
+            set { Set(() => PlayerAbilities, ref playerAbilities, value); }
+        }
+
+        private void GetPlayerItems()
+        {
+            var playerId = SelectedPlayer.Id;
+            PlayerItems.Clear();
+            PlayerSpells.Clear();
+            PlayerActions.Clear();
+            PlayerAbilities.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var itemQuery = db.Table<Player_Item>().Where(x => x.PlayerId == playerId);
+                foreach (var playerItem in itemQuery)
+                {
+                    var item = db.Table<Item>().Where(x => x.Id == playerItem.ItemId).First();
+                    PlayerItems.Add((ItemController)item);
+                }
+                var spellQuery = db.Table<Player_Spell>().Where(x => x.PlayerId == playerId);
+                foreach (var playerSpell in spellQuery)
+                {
+                    var spell = db.Table<Spell>().Where(x => x.Id == playerSpell.SpellId).First();
+                    PlayerSpells.Add((SpellController)spell);
+                }
+                var actionQuery = db.Table<Player_Action>().Where(x => x.PlayerId == playerId);
+                foreach (var playerAction in actionQuery)
+                {
+                    var action = db.Table<Action>().Where(x => x.Id == playerAction.ActionId).First();
+                    PlayerActions.Add((ActionController)action);
+                }
+                var abilityQuery = db.Table<Player_Ability>().Where(x => x.Id == playerId);
+                foreach (var playerAbility in abilityQuery)
+                {
+                    var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
+                    Abilities.Add((AbilityController)ability);
+                }
+            }
+        }
+        #endregion
 
         private MonsterController selectedMonster = new MonsterController();
         public MonsterController SelectedMonster
@@ -75,6 +145,44 @@ namespace CampaignManager.ViewModels
             get { return selectedMonster; }
             set { Set(() => SelectedMonster, ref selectedMonster, value); }
         }
+
+        #region MonsterItems
+        private ObservableCollection<AbilityController> monsterAbilities;
+        public ObservableCollection<AbilityController> MonsterAbilities
+        {
+            get { return monsterAbilities; }
+            set { Set(() => MonsterAbilities, ref monsterAbilities, value); }
+        }
+
+        private ObservableCollection<ActionController> monsterActions;
+        public ObservableCollection<ActionController> MonsterActions
+        {
+            get { return monsterActions; }
+            set { Set(() => MonsterActions, ref monsterActions, value); }
+        }
+
+        private void GetMonsterItems()
+        {
+            var monsterId = SelectedMonster.Id;
+            MonsterAbilities.Clear();
+            MonsterActions.Clear();
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var abilityQuery = db.Table<Monster_Ability>().Where(x => x.MonsterId == monsterId);
+                foreach (var monsterAbility in abilityQuery)
+                {
+                    var ability = db.Table<Ability>().Where(x => x.Id == monsterAbility.AbilityId).First();
+                    Abilities.Add((AbilityController)ability);
+                }
+                var actionQuery = db.Table<Monster_Action>().Where(x => x.ActionId == monsterId);
+                foreach (var monsterAction in actionQuery)
+                {
+                    var action = db.Table<Action>().Where(x => x.Id == monsterAction.ActionId).First();
+                    Actions.Add((ActionController)action);
+                }
+            }
+        }
+        #endregion
 
         private ItemController selectedItem;
         public ItemController SelectedItem
@@ -90,14 +198,14 @@ namespace CampaignManager.ViewModels
             set { Set(() => SelectedSpell, ref selectedSpell, value); }
         }
 
-        private AbilityController selectedAbility;
+        private AbilityController selectedAbility = new AbilityController();
         public AbilityController SelectedAbility
         {
             get { return selectedAbility; }
             set { Set(() => SelectedAbility, ref selectedAbility, value); }
         }
 
-        private ActionController selectedAction;
+        private ActionController selectedAction = new ActionController();
         public ActionController SelectedAction
         {
             get { return selectedAction; }
