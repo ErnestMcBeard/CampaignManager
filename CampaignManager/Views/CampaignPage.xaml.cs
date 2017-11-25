@@ -46,6 +46,11 @@ namespace CampaignManager.Views
             ViewModel.EncounterSelected(e.ClickedItem as Models.EncounterController);
         }
 
+        private void EncounterList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void AddEncounterButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.AddEncounterClick();

@@ -129,8 +129,14 @@
     <Compile Include="ContentDialogs\AddItemDialog.xaml.cs">
       <DependentUpon>AddItemDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContentDialogs\AddItemToPlayerDialog.xaml.cs">
+      <DependentUpon>AddItemToPlayerDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContentDialogs\AddSpellDialog.xaml.cs">
       <DependentUpon>AddSpellDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContentDialogs\AddSpellToPlayerDialog.xaml.cs">
+      <DependentUpon>AddSpellToPlayerDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AlignmentConveter.cs" />
     <Compile Include="Converters\CompletedTextConverter.cs" />
@@ -203,7 +209,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ContentDialogs\AddItemToPlayerDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContentDialogs\AddSpellDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContentDialogs\AddSpellToPlayerDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

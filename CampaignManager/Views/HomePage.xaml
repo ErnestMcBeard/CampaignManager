@@ -310,7 +310,33 @@
                                         <ListView x:Name="PlayerSpellListView"
                                                   ItemsSource="{Binding PlayerSpells}"
                                                   RelativePanel.Below="AddPlayerSpellButton">
-                                            
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <RelativePanel.Resources>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="RelativePanel.AlignVerticalCenterWithPanel"
+                                                                        Value="True" />
+                                                            </Style>
+                                                        </RelativePanel.Resources>
+                                                        <TextBlock x:Name="Name"
+                                                                   Text="{Binding Name}"
+                                                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                                   Margin="0,0,4,0" />
+                                                        <TextBlock x:Name="Level"
+                                                                   Text="{Binding Level}"
+                                                                   Margin="4,0"
+                                                                   RelativePanel.RightOf="Name" />
+                                                        <TextBlock x:Name="Type"
+                                                                   Text="{Binding Type}"
+                                                                   Margin="4,0"
+                                                                   RelativePanel.RightOf="Level" />
+                                                        <TextBlock x:Name="Range"
+                                                                   Text="{Binding Range}"
+                                                                   RelativePanel.AlignRightWithPanel="True" />
+                                                    </RelativePanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>
@@ -335,7 +361,28 @@
                                         <ListView x:Name="PlayerItemListView"
                                                   ItemsSource="{Binding PlayerItems}"
                                                   RelativePanel.Below="AddPlayerItemButton">
-                                            
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <RelativePanel.Resources>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="RelativePanel.AlignVerticalCenterWithPanel"
+                                                                        Value="True" />
+                                                            </Style>
+                                                        </RelativePanel.Resources>
+                                                        <TextBlock x:Name="Name"
+                                                                    Text="{Binding Name}"
+                                                                    Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                                        <TextBlock x:Name="Type"
+                                                                    Text="{Binding Type}"
+                                                                    Margin="8,0"
+                                                                    RelativePanel.RightOf="Name" />
+                                                        <TextBlock x:Name="Rarity"
+                                                                    Text="{Binding Rarity}"
+                                                                    RelativePanel.AlignRightWithPanel="True" />
+                                                    </RelativePanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>

@@ -80,6 +80,29 @@ namespace CampaignManager.Views
             ViewModel.GetPlayerItems();
         }
 
+        private void RemovePlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveSpellFromPlayer((PlayerSpellListView.SelectedValue as SpellController).Id);
+            ViewModel.GetPlayerItems();
+        }
+
+        private async void AddPlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+            await new AddSpellToPlayerDialog(ViewModel.SelectedPlayer.Id).ShowAsync();
+            ViewModel.GetPlayerItems();
+        }
+
+        private void RemovePlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveItemFromPlayer((PlayerItemListView.SelectedValue as ItemController).Id);
+            ViewModel.GetPlayerItems();
+        }
+
+        private async void AddPlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            await new AddItemToPlayerDialog(ViewModel.SelectedPlayer.Id).ShowAsync();
+            ViewModel.GetPlayerItems();
+        }
         #endregion
 
         #region MonsterButtons
@@ -226,27 +249,5 @@ namespace CampaignManager.Views
             ViewModel.SelectedAction = new ActionController();
         }
         #endregion
-
-        private void RemovePlayerSpellButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddPlayerSpellButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RemovePlayerItemButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddPlayerItemButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        
     }
 }

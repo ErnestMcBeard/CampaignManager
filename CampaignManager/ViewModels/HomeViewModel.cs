@@ -129,7 +129,7 @@ namespace CampaignManager.ViewModels
                     var action = db.Table<Action>().Where(x => x.Id == playerAction.ActionId).First();
                     PlayerActions.Add((ActionController)action);
                 }
-                var abilityQuery = db.Table<Player_Ability>().Where(x => x.Id == playerId);
+                var abilityQuery = db.Table<Player_Ability>().Where(x => x.PlayerId == playerId);
                 foreach (var playerAbility in abilityQuery)
                 {
                     var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
@@ -172,13 +172,13 @@ namespace CampaignManager.ViewModels
                 foreach (var monsterAbility in abilityQuery)
                 {
                     var ability = db.Table<Ability>().Where(x => x.Id == monsterAbility.AbilityId).First();
-                    Abilities.Add((AbilityController)ability);
+                    MonsterAbilities.Add((AbilityController)ability);
                 }
                 var actionQuery = db.Table<Monster_Action>().Where(x => x.ActionId == monsterId);
                 foreach (var monsterAction in actionQuery)
                 {
                     var action = db.Table<Action>().Where(x => x.Id == monsterAction.ActionId).First();
-                    Actions.Add((ActionController)action);
+                    MonsterActions.Add((ActionController)action);
                 }
             }
         }
