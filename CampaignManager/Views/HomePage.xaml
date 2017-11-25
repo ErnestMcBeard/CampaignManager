@@ -380,29 +380,8 @@
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Monsters}"
-                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <RelativePanel>
-                                        <TextBlock x:Name="Name"
-                                                   Text="{Binding Name}"
-                                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
-                                        <TextBlock x:Name="Type"
-                                                   Margin="8,0"
-                                                   RelativePanel.RightOf="Name"
-                                                   RelativePanel.AlignVerticalCenterWithPanel='True'>
-                                            <Run Text="{Binding Type}" /><Run Text="," />
-                                            <Run Text="{Binding Alignment, Converter={StaticResource AlignmentConverter}}" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="ChallengeRating"
-                                                   RelativePanel.AlignRightWithPanel="True"
-                                                   RelativePanel.AlignVerticalCenterWithPanel="True">
-                                            <Run Text="CR:" />
-                                            <Run Text="{Binding ChallengeRating}" />
-                                        </TextBlock>
-                                    </RelativePanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}"
+                                  ItemTemplate="{StaticResource MonsterListView}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment"

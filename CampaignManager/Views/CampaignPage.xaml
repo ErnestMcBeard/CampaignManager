@@ -24,7 +24,7 @@
 
         <TextBlock x:Name="CampaignName"
                    Text="{Binding Campaign.Name}"
-                   FontSize="{StaticResource LargeFontSize}" />
+                   FontSize="{StaticResource LargeFontSize}"/>
 
         <TextBlock Grid.Row="1" 
                    Text="Encounters"/>
@@ -42,7 +42,8 @@
                   x:Name="EncounterList"
                   ItemsSource="{Binding Encounters}"
                   SelectedValue="{Binding SelectedEncounter, Mode=TwoWay}"
-                 SelectionChanged="EncounterList_SelectionChanged">
+                  IsItemClickEnabled="True"
+                  ItemClick="EncounterList_ItemClick">
         </ListView>
 
         <RelativePanel Grid.Row="3">
@@ -96,9 +97,8 @@
         <RelativePanel Grid.Row="2"
                        Grid.Column="1"
                        x:Name="EncounterDetails"
-                       Margin="10,0" 
-                       Height="486" 
-                       VerticalAlignment="Bottom">
+                       Margin="10,0"
+                       Padding="0,10">
             <RelativePanel.Resources>
                 <Style TargetType="TextBlock" x:Key="PaddedLabel">
                     <Setter Property="Width" Value="150"/>
@@ -106,7 +106,6 @@
                     <Setter Property="Margin" Value="0,0,0,20"/>
                 </Style>
                 <Style TargetType="TextBox">
-                    <Setter Property="Width" Value="300"/>
                     <Setter Property="Margin" Value="0,0,0,20"/>
                 </Style>
             </RelativePanel.Resources>
@@ -115,6 +114,7 @@
                        Text="Name"
                        Style="{ThemeResource PaddedLabel}"/>
             <TextBox x:Name="EncounterName"
+                     RelativePanel.AlignRightWithPanel="True"
                      Text="{Binding SelectedEncounter.Name, Mode=TwoWay}"
                      RelativePanel.RightOf="NameLabel"/>
             
@@ -123,9 +123,10 @@
                        RelativePanel.Below="NameLabel"
                        Style="{ThemeResource PaddedLabel}"/>
             <TextBox x:Name="EncounterNumber"
-                     Text="{Binding SelectedEncounter.Number, Mode=TwoWay}"
+                     Text="{Binding SelectedEncounter.Number}"
                      RelativePanel.Below="EncounterName"
-                     RelativePanel.RightOf="NumberLabel"/>
+                     RelativePanel.RightOf="NumberLabel"
+                     RelativePanel.AlignRightWithPanel="True"/>
             
             <TextBlock x:Name="CompleteLabel"
                        Text="Complete"
@@ -138,26 +139,18 @@
                       Margin="0,0,0,20"/>
 
             <TextBlock x:Name="MonsterLabel" 
-                       Text="Monsters"
+                       Text="Monsters in Encounter"
                        RelativePanel.Below="CompleteLabel"
-                       Style="{ThemeResource PaddedLabel}"/>
+                       Style="{ThemeResource PaddedLabel}"
+                       Width="Auto"/>
 
             <Button x:Name="DeleteMonsterButton"
                     Style="{ThemeResource TransparentButton}"
                     RelativePanel.Below="EncounterCompleted"
                     RelativePanel.AlignRightWithPanel="True"
-                    Click="DeleteEncounterButton_Click">
+                    Click="DeleteMonsterButton_Click">
                 <TextBlock FontFamily="Segoe MDL2 Assets"
                            Text="&#xE74D;"
-                           FontSize="24" />
-            </Button>
-            <Button x:Name="AddMonsterButton"
-                    Style="{ThemeResource TransparentButton}"
-                    RelativePanel.Below="EncounterCompleted"
-                    RelativePanel.LeftOf="DeleteMonsterButton"
-                    Click="AddEncounterButton_Click">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
-                           Text="&#xE710;"
                            FontSize="24" />
             </Button>
 
@@ -165,13 +158,46 @@
                       RelativePanel.Below="MonsterLabel"
                       RelativePanel.AlignBottomWithPanel="True"
                       RelativePanel.AlignLeftWithPanel="True"
-                      RelativePanel.AlignRightWithPanel="True">
-                
+                      RelativePanel.AlignRightWithPanel="True"
+                      ItemsSource="{Binding EncounterMonsters}"
+                      SelectedValue="{Binding SelectedEncounterMonster, Mode=TwoWay}"
+                      ItemTemplate="{StaticResource MonsterListView}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
-
         </RelativePanel>
 
+        <RelativePanel Grid.Row="1"
+                       Grid.Column="2">
+            <TextBlock Text="All Monsters"/>
+            
+            <Button x:Name="AddMonsterButton"
+                    Style="{ThemeResource TransparentButton}"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Click="AddMonsterButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE710;"
+                           FontSize="24" />
+            </Button>
+        </RelativePanel>
 
+        <ListView x:Name="FullMonsterList"
+                  Grid.Row="2"
+                  Grid.Column="2"
+                  ItemsSource="{Binding AllMonsters}"
+                  SelectedValue="{Binding SelectedAllMonster, Mode=TwoWay}"
+                  ItemTemplate="{StaticResource MonsterListView}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
     </Grid>
 </Page>

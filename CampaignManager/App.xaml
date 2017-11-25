@@ -129,6 +129,26 @@
                 <Setter Property="HorizontalContentAlignment"
                         Value="Stretch" />
             </Style>
+            <DataTemplate x:Key="MonsterListView">
+                <RelativePanel>
+                    <TextBlock x:Name="Name"
+                               Text="{Binding Name}"
+                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBlock x:Name="Type"
+                               Margin="8,0"
+                               RelativePanel.RightOf="Name"
+                               RelativePanel.AlignVerticalCenterWithPanel='True'>
+                        <Run Text="{Binding Type}" /><Run Text="," />
+                        <Run Text="{Binding Alignment, Converter={StaticResource AlignmentConverter}}" />
+                    </TextBlock>
+                    <TextBlock x:Name="ChallengeRating"
+                               RelativePanel.AlignRightWithPanel="True"
+                               RelativePanel.AlignVerticalCenterWithPanel="True">
+                        <Run Text="CR:" />
+                        <Run Text="{Binding ChallengeRating}" />
+                    </TextBlock>
+                </RelativePanel>
+            </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>

@@ -41,6 +41,11 @@ namespace CampaignManager.Views
 
         }
 
+        private void EncounterList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.EncounterSelected(e.ClickedItem as Models.EncounterController);
+        }
+
         private void AddEncounterButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.AddEncounterClick();
@@ -58,12 +63,12 @@ namespace CampaignManager.Views
 
         private void AddMonsterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.AddMonsterClick();
         }
-        
-        private void EncounterList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void DeleteMonsterButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.EncounterSelected();
+            ViewModel.DeleteMonsterClick();
         }
     }
 }
