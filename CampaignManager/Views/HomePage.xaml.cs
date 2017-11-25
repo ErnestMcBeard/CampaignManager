@@ -249,27 +249,5 @@ namespace CampaignManager.Views
             ViewModel.SelectedAction = new ActionController();
         }
         #endregion
-
-        private void RemovePlayerSpellButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddPlayerSpellButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RemovePlayerItemButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddPlayerItemButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        
     }
 }
