@@ -111,8 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="ContentDialogs\AddAbilityToMonsterDialog.xaml.cs">
+      <DependentUpon>AddAbilityToMonsterDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContentDialogs\AddAbilityToPlayerDialog.xaml.cs">
       <DependentUpon>AddAbilityToPlayerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContentDialogs\AddActionToMonsterDialog.xaml.cs">
+      <DependentUpon>AddActionToMonsterDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContentDialogs\AddActionToPlayerDialog.xaml.cs">
       <DependentUpon>AddActionToPlayerDialog.xaml</DependentUpon>
@@ -172,7 +178,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ContentDialogs\AddAbilityToMonsterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContentDialogs\AddAbilityToPlayerDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContentDialogs\AddActionToMonsterDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

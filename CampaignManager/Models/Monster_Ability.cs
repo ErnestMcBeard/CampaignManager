@@ -1,4 +1,5 @@
 ﻿using SQLite.Net.Attributes;
+using SQLite;
 
 namespace CampaignManager.Models
 {
