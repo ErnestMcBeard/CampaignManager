@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" />
             <converters:AlignmentConveter x:Key="AlignmentConverter" />
+            <converters:CompletedTextConverter x:Key="CompletedTextConverter"/>
             <Style x:Key="TransparentButton"
                    TargetType="Button">
                 <Setter Property="Background"

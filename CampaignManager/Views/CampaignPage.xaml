@@ -28,22 +28,41 @@
 
         <TextBlock Grid.Row="1" 
                    Text="Encounters"/>
-        <!--<RelativePanel Grid.Row="1">
-            <TextBlock Text="Encounters"/>
-            <Button x:Name="AddEncounterButton"
-                    RelativePanel.AlignRightWithPanel="True"
-                    Click="AddEncounterButton_Click">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
-                           Text="&#xE710;"
-                           FontSize="24" />
-            </Button>
-        </RelativePanel>-->
+        
         <ListView Grid.Row="2"
                   x:Name="EncounterList"
                   ItemsSource="{Binding Encounters}"
                   SelectedValue="{Binding SelectedEncounter, Mode=TwoWay}"
                   IsItemClickEnabled="True"
                   ItemClick="EncounterList_ItemClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <RelativePanel>
+                        <RelativePanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="RelativePanel.AlignVerticalCenterWithPanel"
+                                        Value="True" />
+                            </Style>
+                        </RelativePanel.Resources>
+                        <TextBlock x:Name="Name"
+                                   Text="{Binding Name}"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="Type"
+                                   Text="{Binding Number}"
+                                   Margin="8,0"
+                                   RelativePanel.RightOf="Name" />
+                        <TextBlock x:Name="Rarity"
+                                   Text="{Binding Completed, Converter={StaticResource CompletedTextConverter}}"
+                                   RelativePanel.AlignRightWithPanel="True" />
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <RelativePanel Grid.Row="3">

@@ -133,6 +133,7 @@
       <DependentUpon>AddSpellDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AlignmentConveter.cs" />
+    <Compile Include="Converters\CompletedTextConverter.cs" />
     <Compile Include="Helpers\SQLiteHelper.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Action.cs" />
