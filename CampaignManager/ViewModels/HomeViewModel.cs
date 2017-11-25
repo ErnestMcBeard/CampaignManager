@@ -129,7 +129,7 @@ namespace CampaignManager.ViewModels
                     var action = db.Table<Action>().Where(x => x.Id == playerAction.ActionId).First();
                     PlayerActions.Add((ActionController)action);
                 }
-                var abilityQuery = db.Table<Player_Ability>().Where(x => x.Id == playerId);
+                var abilityQuery = db.Table<Player_Ability>().Where(x => x.PlayerId == playerId);
                 foreach (var playerAbility in abilityQuery)
                 {
                     var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
