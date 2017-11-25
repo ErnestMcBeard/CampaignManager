@@ -380,29 +380,8 @@
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <ListView ItemsSource="{Binding Monsters}"
-                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <RelativePanel>
-                                        <TextBlock x:Name="Name"
-                                                   Text="{Binding Name}"
-                                                   Style="{ThemeResource SubtitleTextBlockStyle}" />
-                                        <TextBlock x:Name="Type"
-                                                   Margin="8,0"
-                                                   RelativePanel.RightOf="Name"
-                                                   RelativePanel.AlignVerticalCenterWithPanel='True'>
-                                            <Run Text="{Binding Type}" /><Run Text="," />
-                                            <Run Text="{Binding Alignment, Converter={StaticResource AlignmentConverter}}" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="ChallengeRating"
-                                                   RelativePanel.AlignRightWithPanel="True"
-                                                   RelativePanel.AlignVerticalCenterWithPanel="True">
-                                            <Run Text="CR:" />
-                                            <Run Text="{Binding ChallengeRating}" />
-                                        </TextBlock>
-                                    </RelativePanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                                  SelectedValue="{Binding SelectedMonster, Mode=TwoWay}"
+                                  ItemTemplate="{StaticResource MonsterListView}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment"
@@ -506,10 +485,53 @@
                             </StackPanel>
                             <Pivot RelativePanel.RightOf="MonsterSkillPanel">
                                 <PivotItem Header="Abilites">
-                                    
+                                    <RelativePanel>
+                                        <Button x:Name="RemoveMonsterAbilityButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                Click="RemoveMonsterAbilityButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24"/>
+                                        </Button>
+                                        <Button x:Name="AddMonsterAbilityButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemoveMonsterAbilityButton"
+                                                Click="AddMonsterAbilityButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <ListView x:Name="MonsterAbilityListView"
+                                                  ItemsSource="{Binding MonsterAbilities}"
+                                                  RelativePanel.Below="AddMonsterAbilityButton">
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                                 <PivotItem Header="Actions">
-                                    
+                                    <RelativePanel>
+                                        <Button x:Name="RemoveMonsterActionButton"
+                                            Style="{ThemeResource TransparentButton}"
+                                            RelativePanel.AlignRightWithPanel="True"
+                                            Click="RemoveMonsterActionButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE74D;"
+                                                       FontSize="24" />
+                                        </Button>
+                                        <Button x:Name="AddMonsterActionButton"
+                                                Style="{ThemeResource TransparentButton}"
+                                                RelativePanel.LeftOf="RemoveMonsterActionButton"
+                                                Click="AddMonsterActionButton_Click">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                                       Text="&#xE710;"
+                                                       FontSize="24"/>
+                                        </Button>
+                                        <ListView x:Name="MonsterActionListView"
+                                                  ItemsSource="{Binding MonsterActions}"
+                                                  RelativePanel.Below="AddMonsterActionButton">
+
+                                        </ListView>
+                                    </RelativePanel>
                                 </PivotItem>
                             </Pivot>
 

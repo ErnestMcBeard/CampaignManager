@@ -71,13 +71,20 @@ namespace CampaignManager.Models
             }
         }
 
-        public ObservableCollection<Monster> GetMonsters()
+        public ObservableCollection<MonsterController> GetMonsters()
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
+                ObservableCollection<MonsterController> results = new ObservableCollection<MonsterController>();
+                var table = db.Table<Encounter_Monster>().ToList();
                 var monsterIds = db.Table<Encounter_Monster>().Where(x => x.EncounterId == Id).Select(x => x.MonsterId);
                 var monsterObjs = db.Table<Monster>().Where(x => monsterIds.Contains(x.Id));
-                return new ObservableCollection<Monster>(monsterObjs);
+
+                foreach (var monster in monsterObjs)
+                {
+                    results.Add((MonsterController)monster);
+                }
+                return results;
             }
         }
 
@@ -87,6 +94,7 @@ namespace CampaignManager.Models
             {
                 Id = encounter.Id,
                 Name = encounter.Name,
+                Number = encounter.Number,
                 Completed = encounter.Completed
             };
         }

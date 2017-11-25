@@ -130,6 +130,30 @@ namespace CampaignManager.Views
         {
             ViewModel.SelectedMonster = new MonsterController();
         }
+
+        private void RemoveMonsterAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveAbilityFromMonster((MonsterAbilityListView.SelectedValue as AbilityController).Id);
+            ViewModel.GetMonsterItems();
+        }
+
+        private async void AddMonsterAbilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            await new AddAbilityToMonsterDialog(ViewModel.SelectedMonster.Id).ShowAsync();
+             ViewModel.GetMonsterItems();
+        }
+
+        private async void AddMonsterActionButton_Click(object sender, RoutedEventArgs e)
+        {
+           await new AddActionToMonsterDialog(ViewModel.SelectedMonster.Id).ShowAsync();
+           ViewModel.GetMonsterItems();
+        }
+
+        private void RemoveMonsterActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RemoveActionFromMonster((MonsterActionListView.SelectedValue as ActionController).Id);
+            ViewModel.GetMonsterItems();
+        }
         #endregion
 
         #region ItemButtons
@@ -226,5 +250,26 @@ namespace CampaignManager.Views
         }
         #endregion
 
+        private void RemovePlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPlayerSpellButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemovePlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPlayerItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }

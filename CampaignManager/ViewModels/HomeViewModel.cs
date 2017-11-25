@@ -161,11 +161,11 @@ namespace CampaignManager.ViewModels
             set { Set(() => MonsterActions, ref monsterActions, value); }
         }
 
-        private void GetMonsterItems()
+        public void GetMonsterItems()
         {
             var monsterId = SelectedMonster.Id;
-            MonsterAbilities.Clear();
-            MonsterActions.Clear();
+            MonsterAbilities?.Clear();
+            MonsterActions?.Clear();
             using (var db = SQLiteHelper.CreateConnection())
             {
                 var abilityQuery = db.Table<Monster_Ability>().Where(x => x.MonsterId == monsterId);
@@ -390,6 +390,24 @@ namespace CampaignManager.ViewModels
             {
                 var playerItem = db.Table<Player_Item>().Where(x => x.PlayerId == SelectedPlayer.Id && x.ItemId == itemId);
                 db.Delete(playerItem);
+            }
+        }
+
+        public void RemoveAbilityFromMonster(int abilityId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var monsterAbility = db.Table<Monster_Ability>().Where(x => x.MonsterId == SelectedMonster.Id && x.AbilityId == abilityId);
+                db.Delete(monsterAbility);
+            }
+        }
+
+        public void RemoveActionFromMonster(int actionId)
+        {
+            using (var db = SQLiteHelper.CreateConnection())
+            {
+                var monsterAction = db.Table<Monster_Action>().Where(x => x.MonsterId == SelectedMonster.Id && x.ActionId == actionId);
+                db.Delete(monsterAction);
             }
         }
         #endregion
