@@ -236,7 +236,10 @@ namespace CampaignManager.ViewModels
                     item.Delete();
                 }
             }
-            EncounterMonsters = SelectedEncounter.GetMonsters();
+            if (SelectedEncounter != null)
+            {
+                EncounterMonsters = SelectedEncounter.GetMonsters();
+            }
         }
     }
 }
