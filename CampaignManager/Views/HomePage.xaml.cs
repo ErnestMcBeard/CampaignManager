@@ -121,7 +121,7 @@ namespace CampaignManager.Views
             }
             else
             {
-                ViewModel.SelectedMonster.Save();
+                ViewModel.SelectedMonster?.Save();
             }
             ViewModel.GetMonsters();
         }
@@ -140,7 +140,7 @@ namespace CampaignManager.Views
         private async void AddMonsterAbilityButton_Click(object sender, RoutedEventArgs e)
         {
             await new AddAbilityToMonsterDialog(ViewModel.SelectedMonster.Id).ShowAsync();
-             ViewModel.GetMonsterItems();
+            ViewModel.GetMonsterItems();
         }
 
         private async void AddMonsterActionButton_Click(object sender, RoutedEventArgs e)

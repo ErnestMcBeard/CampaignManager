@@ -259,8 +259,17 @@
                                         </Button>
                                         <ListView x:Name="PlayerAbilityListView"
                                                   ItemsSource="{Binding PlayerAbilities}"
+                                                  ItemContainerStyle="{ThemeResource ItemStretch}"
                                                   RelativePanel.Below="AddPlayerAbilityButton">
-                                            
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                                    </RelativePanel>
+                                                    
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>
@@ -284,8 +293,17 @@
                                         </Button>
                                         <ListView x:Name="PlayerActionListView"
                                                   ItemsSource="{Binding PlayerActions}"
+                                                  ItemContainerStyle="{ThemeResource ItemStretch}"
                                                   RelativePanel.Below="AddPlayerActionButton">
-                                            
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                                    </RelativePanel>
+
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>
@@ -551,7 +569,17 @@
                                         </Button>
                                         <ListView x:Name="MonsterAbilityListView"
                                                   ItemsSource="{Binding MonsterAbilities}"
+                                                  ItemContainerStyle="{ThemeResource ItemStretch}"
                                                   RelativePanel.Below="AddMonsterAbilityButton">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                                    </RelativePanel>
+
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>
@@ -575,8 +603,17 @@
                                         </Button>
                                         <ListView x:Name="MonsterActionListView"
                                                   ItemsSource="{Binding MonsterActions}"
+                                                  ItemContainerStyle="{ThemeResource ItemStretch}"
                                                   RelativePanel.Below="AddMonsterActionButton">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RelativePanel>
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+                                                    </RelativePanel>
 
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </RelativePanel>
                                 </PivotItem>

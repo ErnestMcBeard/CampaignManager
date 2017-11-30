@@ -150,6 +150,10 @@
                     </TextBlock>
                 </RelativePanel>
             </DataTemplate>
+            <Style TargetType="TextBox">
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>

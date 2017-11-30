@@ -104,36 +104,39 @@ namespace CampaignManager.ViewModels
 
         public void GetPlayerItems()
         {
-            var playerId = SelectedPlayer.Id;
-            PlayerItems?.Clear();
-            PlayerSpells?.Clear();
-            PlayerActions?.Clear();
-            PlayerAbilities?.Clear();
-            using (var db = SQLiteHelper.CreateConnection())
+            if (SelectedPlayer != null)
             {
-                var itemQuery = db.Table<Player_Item>().Where(x => x.PlayerId == playerId);
-                foreach (var playerItem in itemQuery)
+                var playerId = SelectedPlayer.Id;
+                PlayerItems?.Clear();
+                PlayerSpells?.Clear();
+                PlayerActions?.Clear();
+                PlayerAbilities?.Clear();
+                using (var db = SQLiteHelper.CreateConnection())
                 {
-                    var item = db.Table<Item>().Where(x => x.Id == playerItem.ItemId).First();
-                    PlayerItems.Add((ItemController)item);
-                }
-                var spellQuery = db.Table<Player_Spell>().Where(x => x.PlayerId == playerId);
-                foreach (var playerSpell in spellQuery)
-                {
-                    var spell = db.Table<Spell>().Where(x => x.Id == playerSpell.SpellId).First();
-                    PlayerSpells.Add((SpellController)spell);
-                }
-                var actionQuery = db.Table<Player_Action>().Where(x => x.PlayerId == playerId);
-                foreach (var playerAction in actionQuery)
-                {
-                    var action = db.Table<Action>().Where(x => x.Id == playerAction.ActionId).First();
-                    PlayerActions.Add((ActionController)action);
-                }
-                var abilityQuery = db.Table<Player_Ability>().Where(x => x.PlayerId == playerId);
-                foreach (var playerAbility in abilityQuery)
-                {
-                    var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
-                    PlayerAbilities.Add((AbilityController)ability);
+                    var itemQuery = db.Table<Player_Item>().Where(x => x.PlayerId == playerId);
+                    foreach (var playerItem in itemQuery)
+                    {
+                        var item = db.Table<Item>().Where(x => x.Id == playerItem.ItemId).First();
+                        PlayerItems.Add((ItemController)item);
+                    }
+                    var spellQuery = db.Table<Player_Spell>().Where(x => x.PlayerId == playerId);
+                    foreach (var playerSpell in spellQuery)
+                    {
+                        var spell = db.Table<Spell>().Where(x => x.Id == playerSpell.SpellId).First();
+                        PlayerSpells.Add((SpellController)spell);
+                    }
+                    var actionQuery = db.Table<Player_Action>().Where(x => x.PlayerId == playerId);
+                    foreach (var playerAction in actionQuery)
+                    {
+                        var action = db.Table<Action>().Where(x => x.Id == playerAction.ActionId).First();
+                        PlayerActions.Add((ActionController)action);
+                    }
+                    var abilityQuery = db.Table<Player_Ability>().Where(x => x.PlayerId == playerId);
+                    foreach (var playerAbility in abilityQuery)
+                    {
+                        var ability = db.Table<Ability>().Where(x => x.Id == playerAbility.AbilityId).First();
+                        PlayerAbilities.Add((AbilityController)ability);
+                    }
                 }
             }
         }
@@ -143,18 +146,22 @@ namespace CampaignManager.ViewModels
         public MonsterController SelectedMonster
         {
             get { return selectedMonster; }
-            set { Set(() => SelectedMonster, ref selectedMonster, value); }
+            set
+            {
+                Set(() => SelectedMonster, ref selectedMonster, value);
+                GetMonsterItems();
+            }
         }
 
         #region MonsterItems
-        private ObservableCollection<AbilityController> monsterAbilities;
+        private ObservableCollection<AbilityController> monsterAbilities = new ObservableCollection<AbilityController>();
         public ObservableCollection<AbilityController> MonsterAbilities
         {
             get { return monsterAbilities; }
             set { Set(() => MonsterAbilities, ref monsterAbilities, value); }
         }
 
-        private ObservableCollection<ActionController> monsterActions;
+        private ObservableCollection<ActionController> monsterActions = new ObservableCollection<ActionController>();
         public ObservableCollection<ActionController> MonsterActions
         {
             get { return monsterActions; }
@@ -163,22 +170,27 @@ namespace CampaignManager.ViewModels
 
         public void GetMonsterItems()
         {
-            var monsterId = SelectedMonster.Id;
-            MonsterAbilities?.Clear();
-            MonsterActions?.Clear();
-            using (var db = SQLiteHelper.CreateConnection())
+            if (SelectedMonster != null)
             {
-                var abilityQuery = db.Table<Monster_Ability>().Where(x => x.MonsterId == monsterId);
-                foreach (var monsterAbility in abilityQuery)
+                var monsterId = SelectedMonster.Id;
+                MonsterAbilities?.Clear();
+                MonsterActions?.Clear();
+                using (var db = SQLiteHelper.CreateConnection())
                 {
-                    var ability = db.Table<Ability>().Where(x => x.Id == monsterAbility.AbilityId).First();
-                    MonsterAbilities.Add((AbilityController)ability);
-                }
-                var actionQuery = db.Table<Monster_Action>().Where(x => x.ActionId == monsterId);
-                foreach (var monsterAction in actionQuery)
-                {
-                    var action = db.Table<Action>().Where(x => x.Id == monsterAction.ActionId).First();
-                    MonsterActions.Add((ActionController)action);
+                    var abilityQuery = db.Table<Monster_Ability>().Where(x => x.MonsterId == monsterId);
+                    foreach (var monsterAbility in abilityQuery)
+                    {
+                        var ability = db.Table<Ability>().Where(x => x.Id == monsterAbility.AbilityId).FirstOrDefault();
+                        if (ability != null)
+                            MonsterAbilities.Add((AbilityController)ability);
+                    }
+                    var actionQuery = db.Table<Monster_Action>().Where(x => x.ActionId == monsterId);
+                    foreach (var monsterAction in actionQuery)
+                    {
+                        var action = db.Table<Action>().Where(x => x.Id == monsterAction.ActionId).FirstOrDefault();
+                        if (action != null)
+                            MonsterActions.Add((ActionController)action);
+                    }
                 }
             }
         }
@@ -397,7 +409,7 @@ namespace CampaignManager.ViewModels
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                var monsterAbility = db.Table<Monster_Ability>().Where(x => x.MonsterId == SelectedMonster.Id && x.AbilityId == abilityId);
+                var monsterAbility = db.Table<Monster_Ability>().Where(x => x.MonsterId == SelectedMonster.Id && x.AbilityId == abilityId).FirstOrDefault();
                 db.Delete(monsterAbility);
             }
         }
@@ -406,7 +418,7 @@ namespace CampaignManager.ViewModels
         {
             using (var db = SQLiteHelper.CreateConnection())
             {
-                var monsterAction = db.Table<Monster_Action>().Where(x => x.MonsterId == SelectedMonster.Id && x.ActionId == actionId);
+                var monsterAction = db.Table<Monster_Action>().Where(x => x.MonsterId == SelectedMonster.Id && x.ActionId == actionId).FirstOrDefault();
                 db.Delete(monsterAction);
             }
         }
