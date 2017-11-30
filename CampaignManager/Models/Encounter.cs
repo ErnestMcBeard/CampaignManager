@@ -93,6 +93,7 @@ namespace CampaignManager.Models
             return new EncounterController()
             {
                 Id = encounter.Id,
+                CampaignId = encounter.CampaignId,
                 Name = encounter.Name,
                 Number = encounter.Number,
                 Completed = encounter.Completed
